@@ -55,5 +55,57 @@
     "speakers": [],
     "xml_file_name": "103.xml",
     "source_filetype": "FLEx"
+  },
+  "7c44ce2c-4585-4ee3-a333-71c3c0634125": {
+    "timed": false,
+    "story ID": "7c44ce2c-4585-4ee3-a333-71c3c0634125",
+    "title": {
+      "_default": "DES_2014_DAS_coletor_de_sauvas_noturnas_correct"
+    },
+    "media": {
+      "audio": "",
+      "video": ""
+    },
+    "languages": [],
+    "date_created": "",
+    "date_uploaded": "7/12/2018",
+    "source": {
+      "_default": ""
+    },
+    "description": "",
+    "genre": "",
+    "author": "",
+    "glosser": "",
+    "speakers": [
+      "Daniel Salazar"
+    ],
+    "xml_file_name": "DES_2014_DAS_coletor_de_sauvas_noturnas_correct.eaf",
+    "source_filetype": "ELAN"
+  },
+  "b1d68818-d963-4ef8-97dd-9e551791d152": {
+    "timed": false,
+    "story ID": "b1d68818-d963-4ef8-97dd-9e551791d152",
+    "title": {
+      "_default": "copy2_DES_2014_EDC_homem_ea_mulher_diabo"
+    },
+    "media": {
+      "audio": "",
+      "video": ""
+    },
+    "languages": [],
+    "date_created": "",
+    "date_uploaded": "7/12/2018",
+    "source": {
+      "_default": ""
+    },
+    "description": "",
+    "genre": "",
+    "author": "",
+    "glosser": "",
+    "speakers": [
+      "Edmilson Dias Carrasquilla"
+    ],
+    "xml_file_name": "copy2_DES_2014_EDC_homem_ea_mulher_diabo.eaf",
+    "source_filetype": "ELAN"
   }
 }
