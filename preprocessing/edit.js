@@ -42,35 +42,18 @@ function hasTimestamps(uniqueId) {
 }
 
 function main(callback) {
-  inquirer.prompt([
-    {
-      "type": "list",
-      "name": "valueToEdit",
-      "message": "What do you want to edit?",
-      "choices": [
-        "audio",
-        "video",
-        "title",
-        "description",
-        "genre",
-        "author",
-        "glosser",
-        "date recorded",
-        "source"
-      ]
-    },
-    // mp3
-    {
-      "type": "input",
+	inquirer.prompt([
+		// mp3
+		{
+			"type": "input",
 			"name": "audio",
 			"message": "Name of mp3 file:",
 			"default": data["media"]["audio"],
 			"when":
 				function(answers) {
-          const condition = hasTimestamps(filename) && answers.valueToEdit === "audio"
-					return condition;
+					return hasTimestamps(filename);
 				},
-			"validate":
+			"validate":	
 				function(response) {
 					const media_files = fs.readdirSync("data/media_files");
 					if (media_files.indexOf(response) >= 0 || response === "") {
@@ -81,19 +64,18 @@ function main(callback) {
 						return "That file doesn't exist in your media_files directory! Please be aware that filenames are case-sensitive and require an extension. Type 'blank' to leave the file blank.";
 					}
 				}
-    },
-    // mp4
-    {
-      "type": "input",
+		},
+		// mp4
+		{
+			"type": "input",
 			"name": "video",
 			"message": "Name of mp4 file:",
 			"default": data["media"]["video"],
 			"when":
-        function(answers) {
-          const condition = hasTimestamps(filename) && answers.valueToEdit === "audio"
-          return condition;
-        },
-			"validate":
+				function(answers) {
+					return hasTimestamps(filename);
+				},
+			"validate":	
 				function(response) {
 					const media_files = fs.readdirSync("data/media_files");
 					if (media_files.indexOf(response) >= 0 || response === "") {
@@ -104,154 +86,112 @@ function main(callback) {
 						return "That file doesn't exist in your media_files directory! Please be aware that filenames are case-sensitive and require an extension. Type 'blank' to leave the file blank.";
 					}
 				}
-    },
-    // edit title?
-    {
-			"type": "input",
+		},
+		// edit title?
+		{
+			"type": "input", 
 			"name": "title",
-      "message": "Title:",
-      "default": data["title"]["_default"],
-      "when":
-        function(answers) {
-          return answers.valueToEdit === "title"
-        }
-    },
-    // edit description?
-    {
-			"type": "confirm",
+			"message": "Title:",
+			"default": data["title"]["_default"]
+		},
+		// edit description?
+		{
+			"type": "confirm", 
 			"name": "desc_edit",
 			"message": "Edit description?",
 			"default": false,
-			"when":
+			"when": 
 				function(answers) {
-          if (data["description"] && answers.valueToEdit === "description") {
+					if (data["description"]) {
 						console.log("You've already entered a description: " + '"' + data["description"] + '"');
 						return true;
 					} else {
 						return false;
 					}
 				}
-    },
-    // description editor (probably using Vim)
+		},
+		// description editor (probably using Vim)
 		{
-			"type": "editor",
+			"type": "editor", 
 			"name": "description",
 			"message": " ", // cannot be empty :(
 			"default": data["description"],
-			"when":
+			"when": 
 				function(answers) {
 					return (answers["desc_edit"]);
 				}
 		},
 		// description creator
 		{
-			"type": "input",
+			"type": "input", 
 			"name": "description",
 			"message": "Enter a description:",
-			"when":
+			"when": 
 				function(answers) {
-					return (data["description"] === "" && answers.valueToEdit === "description");
+					return (data["description"] === "");
 				}
 		},
 		// genre
 		{
-			"type": "list",
+			"type": "list", 
 			"name": "genre",
 			"message": "Select a genre:",
 			"choices": ["Nonfiction", "Fiction", ""],
-      "default": data["genre"],
-      "when":
-        function(answers) {
-          return answers.valueToEdit === "genre"
-        }
+			"default": data["genre"]
 		},
 		// author
 		{
-			"type": "input",
+			"type": "input", 
 			"name": "author",
 			"message": "Author:",
-      "default": data["author"],
-      "when":
-        function(answers) {
-          return answers.valueToEdit === "author"
-        }
+			"default": data["author"]
 		},
 		// glosser
 		{
-			"type": "input",
+			"type": "input", 
 			"name": "glosser",
 			"message": "Who glossed it:",
-      "default": data["glosser"],
-      "when":
-        function(answers) {
-          return answers.valueToEdit === "glosser"
-        }
+			"default": data["glosser"]
 		},
 		// date recorded
 		{
-			"type": "input",
+			"type": "input", 
 			"name": "date_created",
 			"message": "Date of creation (mm/dd/yyyy):",
-      "default": data["date_created"],
-      "when":
-        function(answers) {
-          return answers.valueToEdit === "date recorded"
-        }
+			"default": data["date_created"]
 		},
 		// source
 		{
-			"type": "input",
+			"type": "input", 
 			"name": "source",
 			"message": "Source:",
-      "default": data["source"]["_default"],
-      "when":
-        function(answers) {
-          return answers.valueToEdit === "source"
-        }
+			"default": data["source"]["_default"]
 		}
-  ]).then(function (answers) {
-    if (answers["audio"] && answers["audio"] == "blank") {
+	// 
+	]).then(function (answers) {
+		if (answers["audio"] == "blank") {
 			data["media"]["audio"] == "";
-		} else if (answers["audio"]) {
+		} else {
 			data["media"]["audio"] = answers["audio"];
 		}
-		if (answers["video"] && answers["video"] == "blank") {
+		if (answers["video"] == "blank") {
 			data["media"]["video"] == "";
-		} else if (answers["video"]) {
+		} else {
 			data["media"]["video"] = answers["video"];
 		}
 		data["timed"] = (data["media"]["audio"] != "") || (data["media"]["video"] != "");
-
+		
 		if (answers["description"]) {
 			data["description"] = answers["description"];
-    }
-
-    if (answers["title"]) {
-      data["title"]["_default"] = answers["title"]
-    }
-
-    if (answers["genre"]) {
-      data["genre"] = answers["genre"]
-    }
-
-    if (answers["author"]) {
-      data["author"] = answers["author"]
-    }
-
-    if (answers["glosser"]) {
-      data["glosser"] = answers["glosser"]
-    }
-
-    if (answers["date_created"]) {
-      data["date_created"] = answers["date_created"]
-    }
-
-    if (answers["source"]) {
-      data["source"]["_default"] = answers["source"]
-    }
-
-    callback()
-  })
+		}
+		data["title"]["_default"] = answers["title"];
+		data["genre"] = answers["genre"];
+		data["author"] = answers["author"];
+		data["glosser"] = answers["glosser"];
+		data["date_created"] = answers["date_created"];
+		data["source"]["_default"] = answers["source"];
+		callback();
+	});
 }
 
 function update() {
@@ -261,3 +201,4 @@ function update() {
 	console.log("📤" + "  " + "Metadata edit complete.");
 	console.log("\nYou've successfully edited the metadata. However, this will not be displayed on the site until you rebuild the databases and site. (You can do both using the \"quick-build-online\" or \"quick-build-offline\" npm script; for more info: https://github.com/BrownCLPS/LingView/wiki)");
 }
+
