@@ -97,8 +97,6 @@ function stretchSlots(anotID, prevStretch, tiersToConstraints,
 function preprocess(adocIn, pfsxIn, jsonFilesDir, xmlFileName, callback) {
   const storyID = eafUtils.getDocID(adocIn);
   const indexMetadata = helper.improveElanIndexData(xmlFileName, storyID, adocIn);
-  // updateIndex(indexMetadata, "data/index.json", storyID);
-  // updateIndex(indexMetadata, "data/index.json", storyID); // TODO does this need to be run twice?
   const jsonOut = {
     "metadata": indexMetadata,
     "sentences": []
@@ -110,20 +108,14 @@ function preprocess(adocIn, pfsxIn, jsonFilesDir, xmlFileName, callback) {
   const tiers = eafUtils.getNonemptyTiers(adocIn);
   const indepTiers = tiers.filter((tier) => eafUtils.getParentTierName(tier) == null);
   
-  // give each tier an ID
-  let tierIDsFromNames = {};
+  // record whether each tier is subdivided
   for (let i = 0; i < tiers.length; i++) {
-    // const newID = "T" + (i + 1).toString();
     const tier = tiers[i];
     const tierName = eafUtils.getTierName(tier);
     jsonOut.metadata["tier IDs"][tierName] = {
-      name: tierName,
       subdivided: eafUtils.isTierSubdivided(tierName, tiers),
     };
-    tierIDsFromNames[tierName] = tierName;
   }
-  
-  // TODO glom morphs if coming from FLEx?
   
   // tiersToConstraints: tierName -> constraintName
   // (to generate, first create typesToConstraints: linguisticTypeName -> constraintName)
@@ -360,8 +352,6 @@ function preprocess(adocIn, pfsxIn, jsonFilesDir, xmlFileName, callback) {
     }
   }
   
-  //jsonOut['annotationChildren'] = annotationChildren; // TODO remove when no longer needed for debugging
-  
   const anotDescendants = {}; // indepAnotID -> depTierName -> ordered listof anotIDs descended from indepAnot
   for (const indepTier of indepTiers) {
     for (const indepAnot of eafUtils.getAnnotations(indepTier)) {
@@ -386,31 +376,18 @@ function preprocess(adocIn, pfsxIn, jsonFilesDir, xmlFileName, callback) {
       anotDescendants[indepAnotID] = depTiersAnots;
     }
   }
-  //jsonOut['anotDescendants'] = anotDescendants; // TODO remove when no longer needed for debugging
   
   const garbageTierNames = pfsxUtils.getHiddenTiers(pfsxIn);
-  let garbageTierIDs = [];
-  for (const garbageTierName of garbageTierNames) {
-    garbageTierIDs.push(tierIDsFromNames[garbageTierName]);
-  }
-  
   const tierNameOrder = pfsxUtils.getTierOrder(pfsxIn);
-  let tierIDOrder = [];
-  for (const tierName of tierNameOrder) {
-    tierIDOrder.push(tierIDsFromNames[tierName]);
-  }
-  
-  // careful - garbageTierIDs and tierIDOrder may contain undefined, e.g. if there are empty tiers
   
   for (let i = 0; i < indepTiers.length; i++) {
     const spkrID = "S" + (i + 1).toString(); // assume each independent tier has a distinct speaker
     const indepTierName = eafUtils.getTierName(indepTiers[i]);
-    const tierID = tierIDsFromNames[indepTierName];
     
     jsonOut.metadata["speaker IDs"][spkrID] = {
       "name": eafUtils.getTierSpeakerName(indepTiers[i]),
       "language": eafUtils.getTierLanguage(indepTiers[i]),
-      "tier": tierID,
+      "tier": indepTierName,
     };
     
     for (const indepAnot of eafUtils.getAnnotations(indepTiers[i])) {
@@ -423,12 +400,11 @@ function preprocess(adocIn, pfsxIn, jsonFilesDir, xmlFileName, callback) {
       
       const sentenceJson = {
         "speaker": spkrID,
-        "tier": tierID,
+        "tier": indepTierName,
         "start_time_ms": parseInt(timeslots[eafUtils.getAlignableAnnotationStartSlot(indepAnot)], 10),
         "end_time_ms": parseInt(timeslots[eafUtils.getAlignableAnnotationEndSlot(indepAnot)], 10),
         "num_slots": anotEndSlots[indepAnotID],
         "text": eafUtils.getAnnotationValue(indepAnot),
-        //"anotID": indepAnotID, // TODO remove when no longer needed for debugging
         "dependents": [],
       };
       
@@ -436,7 +412,7 @@ function preprocess(adocIn, pfsxIn, jsonFilesDir, xmlFileName, callback) {
       for (const depTierName in depTiersAnots) {
         if (depTiersAnots.hasOwnProperty(depTierName)) {
           const depTierJson = {
-            "tier": tierIDsFromNames[depTierName],
+            "tier": depTierName,
             "values": [],
           };
           
@@ -448,7 +424,6 @@ function preprocess(adocIn, pfsxIn, jsonFilesDir, xmlFileName, callback) {
             depTierJson.values.push({
               "start_slot": anotStartSlots[depAnotID],
               "end_slot": anotEndSlots[depAnotID],
-              //"anotID": eafUtils.getAnnotationID(depAnot), // TODO remove when no longer needed for debugging
               "value": eafUtils.getAnnotationValue(depAnot),
             });
           }
@@ -457,10 +432,10 @@ function preprocess(adocIn, pfsxIn, jsonFilesDir, xmlFileName, callback) {
         }
       }
       
-      if (tierIDOrder.length !== 0) {
+      if (tierNameOrder.length !== 0) {
         const orderedDependents = [];
-        for (const tierID of tierIDOrder) {
-          const tier = sentenceJson.dependents.find((t) => t.tier === tierID);
+        for (const tierName of tierNameOrder) {
+          const tier = sentenceJson.dependents.find((t) => t.tier === tierName);
           if (tier != null) {
             orderedDependents.push(tier);
           }
@@ -469,9 +444,9 @@ function preprocess(adocIn, pfsxIn, jsonFilesDir, xmlFileName, callback) {
       }
       
       // remove hidden dependent tiers
-      sentenceJson.dependents = sentenceJson.dependents.filter((t) => !garbageTierIDs.includes(t.tier));
+      sentenceJson.dependents = sentenceJson.dependents.filter((t) => !garbageTierNames.includes(t.tier));
       // remove the independent tier if it's hidden
-      if (garbageTierIDs.includes(sentenceJson["tier"])) {
+      if (garbageTierNames.includes(sentenceJson.tier)) {
         sentenceJson["text"] = "";
         sentenceJson["noTopRow"] = "true";
       }
@@ -485,7 +460,7 @@ function preprocess(adocIn, pfsxIn, jsonFilesDir, xmlFileName, callback) {
   jsonOut.sentences.sort((s1,s2) => s1.start_time_ms - s2.start_time_ms);
   
   for (const tier in jsonOut.metadata["tier IDs"]) {
-    if (jsonOut.metadata["tier IDs"].hasOwnProperty(tier) && garbageTierIDs.includes(tier)) {
+    if (jsonOut.metadata["tier IDs"].hasOwnProperty(tier) && garbageTierNames.includes(tier)) {
       delete jsonOut.metadata["tier IDs"][tier];
     }
   }
@@ -549,5 +524,4 @@ function preprocess_dir(eafFilesDir, jsonFilesDir, callback) {
 module.exports = {
   preprocess_dir: preprocess_dir,
   preprocess: preprocess,
-  assignSlots: assignSlots, // TODO remove when no longer needed for debugging
 };

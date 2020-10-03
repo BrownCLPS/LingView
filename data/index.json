@@ -89,31 +89,24 @@
     "source_filetype": "ELAN",
     "tier IDs": {
       "Gloss": {
-        "name": "Gloss",
         "subdivided": true
       },
       "Glosa": {
-        "name": "Glosa",
         "subdivided": true
       },
       "Ortografía vieja": {
-        "name": "Ortografía vieja",
         "subdivided": true
       },
       "Morfema": {
-        "name": "Morfema",
         "subdivided": true
       },
       "English": {
-        "name": "English",
         "subdivided": true
       },
       "Español": {
-        "name": "Español",
         "subdivided": true
       },
       "A'ingae": {
-        "name": "A'ingae",
         "subdivided": true
       }
     },
