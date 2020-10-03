@@ -11,7 +11,6 @@ function buildSearch(jsonFileNames) {
         const jsonPath = "data/json_files/" + jsonFileName;
         const f = require(path.resolve(__dirname, '../' + jsonPath)); // JSON.parse(fs.readFileSync(jsonPath))
         const storyID = f.metadata["story ID"];
-        // not sure why _default isn't top level
         const title = f.metadata["title"]["_default"];
         const newSentences = f["sentences"];
         for (sentence in newSentences) {
@@ -34,12 +33,14 @@ function buildSearch(jsonFileNames) {
         };
         // Top level line not included in sentence.dependents so it has to be handled
         // seperately
-        let tierName = sentence.tier;
+        let tierName = sentence.tier; // defined for ELAN, undefined for FLEx
         reformatted["dependents"][tierName] = {"value": sentence.text};
   
         for (const tier of sentence["dependents"]) {
-            tierName = tier.tier;
+            tierName = tier.tier; // name if ELAN, ID (e.g. "T2") if FLEx
             reformatted["dependents"][tierName] = tier.values;
+             // tier.values looks like: 
+             // "values": [{"start_slot": 0,"end_slot": 1,"value": "ya"},...]
         }
         data.push(reformatted);
     }

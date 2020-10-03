@@ -43,6 +43,7 @@ export class Search extends React.Component {
     build_fuse() {
         let fields = [];
         document.getElementsByName("fields").forEach(function (e) {
+            // tier names in search_index must match checkbox names, it looks like?
             if (e.checked) fields.push(`dependents.${e.id}.value`);
         });
         console.log(fields);
@@ -51,11 +52,11 @@ export class Search extends React.Component {
         var options = {
             shouldSort: true,
             findAllMatches: true,
-            tokenize: true,
+            tokenize: true, // not in the options documented at https://fusejs.io/api/options.html
             matchAllTokens: true,
-            threshold: 15,
+            threshold: 15, // 0.0 means perfect match, 1.0 matches anything, default is 0.6
             distance: 0,
-            maxPatternLength: 64,
+            maxPatternLength: 64, // not in the options documented at https://fusejs.io/api/options.html
             minMatchCharLength: 1,
             keys: fields
         };
@@ -106,7 +107,7 @@ export class Search extends React.Component {
         return tiers
     }
 
-    genCheckboxes () {
+    genCheckboxes () { // called by render()
         let checkboxes = [];
         let tiers = this.getTiers();
         console.log(tiers);
