@@ -32,32 +32,25 @@
     "xml_file_name": "103.xml",
     "source_filetype": "FLEx",
     "tier IDs": {
-      "T1": {
-        "name": "Palabra a'ingae (borman)",
+      "Palabra a'ingae (borman)": {
         "subdivided": true
       },
-      "T2": {
-        "name": "Morfema (texto) a'ingae (borman)",
+      "Morfema (texto) a'ingae (borman)": {
         "subdivided": true
       },
-      "T3": {
-        "name": "Morfema (forma típico) a'ingae (borman)",
+      "Morfema (forma típico) a'ingae (borman)": {
         "subdivided": true
       },
-      "T4": {
-        "name": "Glosa de morfema inglés",
+      "Glosa de morfema inglés": {
         "subdivided": true
       },
-      "T5": {
-        "name": "Frase inglés",
+      "Frase inglés": {
         "subdivided": false
       },
-      "T6": {
-        "name": "Frase español",
+      "Frase español": {
         "subdivided": false
       },
-      "T7": {
-        "name": "Frase a'ingae (borman)",
+      "Frase a'ingae (borman)": {
         "subdivided": false
       }
     }

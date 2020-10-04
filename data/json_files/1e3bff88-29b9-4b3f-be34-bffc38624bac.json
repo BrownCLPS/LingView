@@ -32,32 +32,25 @@
     "xml_file_name": "103.xml",
     "source_filetype": "FLEx",
     "tier IDs": {
-      "T1": {
-        "name": "Palabra a'ingae (borman)",
+      "Palabra a'ingae (borman)": {
         "subdivided": true
       },
-      "T2": {
-        "name": "Morfema (texto) a'ingae (borman)",
+      "Morfema (texto) a'ingae (borman)": {
         "subdivided": true
       },
-      "T3": {
-        "name": "Morfema (forma típico) a'ingae (borman)",
+      "Morfema (forma típico) a'ingae (borman)": {
         "subdivided": true
       },
-      "T4": {
-        "name": "Glosa de morfema inglés",
+      "Glosa de morfema inglés": {
         "subdivided": true
       },
-      "T5": {
-        "name": "Frase inglés",
+      "Frase inglés": {
         "subdivided": false
       },
-      "T6": {
-        "name": "Frase español",
+      "Frase español": {
         "subdivided": false
       },
-      "T7": {
-        "name": "Frase a'ingae (borman)",
+      "Frase a'ingae (borman)": {
         "subdivided": false
       }
     },
@@ -69,7 +62,7 @@
       "text": "Mingae dapa tsu va andeni singo a'ija canse'fa.",
       "dependents": [
         {
-          "tier": "T1",
+          "tier": "Palabra a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -114,7 +107,7 @@
           ]
         },
         {
-          "tier": "T2",
+          "tier": "Morfema (texto) a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -159,7 +152,7 @@
           ]
         },
         {
-          "tier": "T3",
+          "tier": "Morfema (forma típico) a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -204,7 +197,7 @@
           ]
         },
         {
-          "tier": "T4",
+          "tier": "Glosa de morfema inglés",
           "values": [
             {
               "start_slot": 0,
@@ -249,7 +242,7 @@
           ]
         },
         {
-          "tier": "T5",
+          "tier": "Frase inglés",
           "values": [
             {
               "start_slot": 0,
@@ -259,7 +252,7 @@
           ]
         },
         {
-          "tier": "T6",
+          "tier": "Frase español",
           "values": [
             {
               "start_slot": 0,
@@ -275,7 +268,7 @@
       "text": "Tayopi fae tsandie tsu an'bian tise du'shuma.",
       "dependents": [
         {
-          "tier": "T1",
+          "tier": "Palabra a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -315,7 +308,7 @@
           ]
         },
         {
-          "tier": "T2",
+          "tier": "Morfema (texto) a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -355,7 +348,7 @@
           ]
         },
         {
-          "tier": "T3",
+          "tier": "Morfema (forma típico) a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -395,7 +388,7 @@
           ]
         },
         {
-          "tier": "T4",
+          "tier": "Glosa de morfema inglés",
           "values": [
             {
               "start_slot": 0,
@@ -435,7 +428,7 @@
           ]
         },
         {
-          "tier": "T5",
+          "tier": "Frase inglés",
           "values": [
             {
               "start_slot": 0,
@@ -445,7 +438,7 @@
           ]
         },
         {
-          "tier": "T6",
+          "tier": "Frase español",
           "values": [
             {
               "start_slot": 0,
@@ -461,7 +454,7 @@
       "text": "Tsa du'shu tsu tise yaya cundyiye japa cundyi'je'choma atte.",
       "dependents": [
         {
-          "tier": "T1",
+          "tier": "Palabra a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -511,7 +504,7 @@
           ]
         },
         {
-          "tier": "T2",
+          "tier": "Morfema (texto) a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -561,7 +554,7 @@
           ]
         },
         {
-          "tier": "T3",
+          "tier": "Morfema (forma típico) a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -611,7 +604,7 @@
           ]
         },
         {
-          "tier": "T4",
+          "tier": "Glosa de morfema inglés",
           "values": [
             {
               "start_slot": 0,
@@ -661,7 +654,7 @@
           ]
         },
         {
-          "tier": "T5",
+          "tier": "Frase inglés",
           "values": [
             {
               "start_slot": 0,
@@ -671,7 +664,7 @@
           ]
         },
         {
-          "tier": "T6",
+          "tier": "Frase español",
           "values": [
             {
               "start_slot": 0,
@@ -687,7 +680,7 @@
       "text": "Tise yaya cundyi'je'fa tsu sin'an.",
       "dependents": [
         {
-          "tier": "T1",
+          "tier": "Palabra a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -717,7 +710,7 @@
           ]
         },
         {
-          "tier": "T2",
+          "tier": "Morfema (texto) a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -747,7 +740,7 @@
           ]
         },
         {
-          "tier": "T3",
+          "tier": "Morfema (forma típico) a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -777,7 +770,7 @@
           ]
         },
         {
-          "tier": "T4",
+          "tier": "Glosa de morfema inglés",
           "values": [
             {
               "start_slot": 0,
@@ -807,7 +800,7 @@
           ]
         },
         {
-          "tier": "T5",
+          "tier": "Frase inglés",
           "values": [
             {
               "start_slot": 0,
@@ -817,7 +810,7 @@
           ]
         },
         {
-          "tier": "T6",
+          "tier": "Frase español",
           "values": [
             {
               "start_slot": 0,
@@ -833,7 +826,7 @@
       "text": "Tsonsi tsama attepa yaya que cundyi'fa tsu sin'an qquen susi tise yaya in'jan, cuintsu tsa'caen injengembe camba tisu yaya cundyi'je'fama atte'ta singo a'ive daye.",
       "dependents": [
         {
-          "tier": "T1",
+          "tier": "Palabra a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -958,7 +951,7 @@
           ]
         },
         {
-          "tier": "T2",
+          "tier": "Morfema (texto) a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -1083,7 +1076,7 @@
           ]
         },
         {
-          "tier": "T3",
+          "tier": "Morfema (forma típico) a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -1208,7 +1201,7 @@
           ]
         },
         {
-          "tier": "T4",
+          "tier": "Glosa de morfema inglés",
           "values": [
             {
               "start_slot": 0,
@@ -1323,7 +1316,7 @@
           ]
         },
         {
-          "tier": "T5",
+          "tier": "Frase inglés",
           "values": [
             {
               "start_slot": 0,
@@ -1333,7 +1326,7 @@
           ]
         },
         {
-          "tier": "T6",
+          "tier": "Frase español",
           "values": [
             {
               "start_slot": 0,
@@ -1349,7 +1342,7 @@
       "text": "Tsa'caen in'jansi tsa du'shuja singove da.",
       "dependents": [
         {
-          "tier": "T1",
+          "tier": "Palabra a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -1384,7 +1377,7 @@
           ]
         },
         {
-          "tier": "T2",
+          "tier": "Morfema (texto) a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -1419,7 +1412,7 @@
           ]
         },
         {
-          "tier": "T3",
+          "tier": "Morfema (forma típico) a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -1454,7 +1447,7 @@
           ]
         },
         {
-          "tier": "T4",
+          "tier": "Glosa de morfema inglés",
           "values": [
             {
               "start_slot": 0,
@@ -1489,7 +1482,7 @@
           ]
         },
         {
-          "tier": "T5",
+          "tier": "Frase inglés",
           "values": [
             {
               "start_slot": 0,
@@ -1499,7 +1492,7 @@
           ]
         },
         {
-          "tier": "T6",
+          "tier": "Frase español",
           "values": [
             {
               "start_slot": 0,
@@ -1515,7 +1508,7 @@
       "text": "Tsa'caen singove dapa jai'ngae pushepa singove atapa.",
       "dependents": [
         {
-          "tier": "T1",
+          "tier": "Palabra a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -1555,7 +1548,7 @@
           ]
         },
         {
-          "tier": "T2",
+          "tier": "Morfema (texto) a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -1595,7 +1588,7 @@
           ]
         },
         {
-          "tier": "T3",
+          "tier": "Morfema (forma típico) a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -1635,7 +1628,7 @@
           ]
         },
         {
-          "tier": "T4",
+          "tier": "Glosa de morfema inglés",
           "values": [
             {
               "start_slot": 0,
@@ -1675,7 +1668,7 @@
           ]
         },
         {
-          "tier": "T5",
+          "tier": "Frase inglés",
           "values": [
             {
               "start_slot": 0,
@@ -1685,7 +1678,7 @@
           ]
         },
         {
-          "tier": "T6",
+          "tier": "Frase español",
           "values": [
             {
               "start_slot": 0,
@@ -1701,7 +1694,7 @@
       "text": "Tsa'ye tsu ja'ño pan singondeccuja va andeni canse'fa.",
       "dependents": [
         {
-          "tier": "T1",
+          "tier": "Palabra a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -1746,7 +1739,7 @@
           ]
         },
         {
-          "tier": "T2",
+          "tier": "Morfema (texto) a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -1791,7 +1784,7 @@
           ]
         },
         {
-          "tier": "T3",
+          "tier": "Morfema (forma típico) a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,
@@ -1836,7 +1829,7 @@
           ]
         },
         {
-          "tier": "T4",
+          "tier": "Glosa de morfema inglés",
           "values": [
             {
               "start_slot": 0,
@@ -1881,7 +1874,7 @@
           ]
         },
         {
-          "tier": "T5",
+          "tier": "Frase inglés",
           "values": [
             {
               "start_slot": 0,
@@ -1891,7 +1884,7 @@
           ]
         },
         {
-          "tier": "T7",
+          "tier": "Frase a'ingae (borman)",
           "values": [
             {
               "start_slot": 0,

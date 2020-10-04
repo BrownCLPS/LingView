@@ -42,9 +42,7 @@ class tierRegistry {
   }
 
   constructor(isoDict) {
-    this.tierIDs = {}; // for internal bookkeeping
     this.jsonTierIDs = {}; // format that should be written to file
-    this.nextTierIDnum = 1;
     this.isoDict = isoDict;
   }
 
@@ -103,25 +101,17 @@ class tierRegistry {
     return this.jsonTierIDs;
   }
 
-  // if this is a new, non-ignored tier, register its ID and include it in metadata
-  // if the tier is ignored, return null; else return its ID
-  // used global vars: tierIDs, jsonOut.metadata["tier IDs"], nextTierIDnum
+  // if this is a new, non-ignored tier, include it in metadata
+  // if the tier is ignored, return null; else return its name
   maybeRegisterTier(lang, type, isSubdivided) {
     if (tierRegistry.isIgnored(type)) {
       return null;
     }
-    if (!this.tierIDs.hasOwnProperty(lang)) {
-      this.tierIDs[lang] = {};
-    }
-    if (!this.tierIDs[lang].hasOwnProperty(type)) {
-      const tierID = "T" + (this.nextTierIDnum++).toString();
-      this.tierIDs[lang][type] = tierID;
-      this.jsonTierIDs[tierID] = {
-        name: this.getTierName(lang, type),
-        subdivided: isSubdivided,
-      };
-    }
-    return this.tierIDs[lang][type];
+    const tierName = this.getTierName(lang, type)
+    this.jsonTierIDs[tierName] = {
+      subdivided: isSubdivided,
+    };
+    return tierName;
   }
 }
 

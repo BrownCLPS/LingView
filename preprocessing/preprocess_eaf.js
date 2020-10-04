@@ -466,7 +466,6 @@ function preprocess(adocIn, pfsxIn, jsonFilesDir, xmlFileName, callback) {
   }
 
   updateIndex(jsonOut.metadata, "data/index.json", storyID);
-  updateIndex(jsonOut.metadata, "data/index.json", storyID); // TODO does this need to be run twice?
   
   const jsonPath = jsonFilesDir + storyID + ".json";
   fs.writeFileSync(jsonPath, JSON.stringify(jsonOut, null, 2));

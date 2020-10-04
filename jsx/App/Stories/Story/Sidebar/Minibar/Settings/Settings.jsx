@@ -4,7 +4,6 @@ import { Video } from './../../Video.jsx';
 class VideoButton extends React.Component {
   // I/P: --
   // O/P: a button that can show/hide video, reset "player" ID, etc.
-  // Status: tested, working
   constructor(props) {
     super(props);
     this.state = {
@@ -29,10 +28,9 @@ class VideoButton extends React.Component {
 }
 
 export function Settings({ tiers, hasVideo }) {
-	// I/P: tiers, a hashmap from Tier ID to {name, subdivided}
+	// I/P: tiers, a hashmap from tier name to a boolean indicating whether the tier is subdivided
 	//      hasVideo, a boolean
-	// O/P: a search bar with concordance functionality
-	// Status: untested
+	// O/P: checkboxes that show/hide tiers and the video when clicked
   let videoButton = null;
   if (hasVideo) {
     videoButton = <VideoButton />;
