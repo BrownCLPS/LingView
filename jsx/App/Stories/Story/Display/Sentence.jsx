@@ -1,4 +1,7 @@
 import id from 'shortid';
+var htmlEscape = require("html-es6cape");
+// Note: tier names should be escaped when used as HTML attributes (e.g. data-tier=tier_name), 
+// but not when used as page text (e.g. <label>{tier_name}</label>)
 
 function Row({ numSlots, values, tier }) {
 	// I/P: numSlots, taken from parent sentence
@@ -48,7 +51,7 @@ function Row({ numSlots, values, tier }) {
 		const diff = String(finalSlot - currentSlot);
 		output.push(<td key={id.generate()} colSpan={diff} />);
 	}
-	return <tr data-tier={tier}>{output}</tr>;
+	return <tr data-tier={htmlEscape(tier)}>{output}</tr>;
 }
 
 export function Sentence({ sentence }) {
@@ -62,7 +65,7 @@ export function Sentence({ sentence }) {
 	// 'colSpan={numSlots}' ensures that this row spans the entire table.
   if (sentence['noTopRow'] == null || sentence['noTopRow'] === 'false') {
     rowList.push(
-      <tr data-tier={sentence['tier']}>
+      <tr data-tier={htmlEscape(sentence['tier'])}>
         <td colSpan={numSlots} className="topRow">{sentence['text']}</td>
       </tr>
     );
@@ -103,7 +106,7 @@ export function SearchSentence({ sentence }) {
         if (dependents[tier][0] == undefined) {
             // row is top row
             rowList.push(
-              <tr data-tier={sentence['tier']}>
+              <tr data-tier={htmlEscape(sentence['tier'])}>
                 <td colSpan={numSlots} className="topRow">{sentence['text']}</td>
               </tr>
             );

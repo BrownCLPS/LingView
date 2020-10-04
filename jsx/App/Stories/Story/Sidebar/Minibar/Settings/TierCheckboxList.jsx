@@ -1,3 +1,7 @@
+var htmlEscape = require("html-es6cape");
+// Note: tier names should be escaped when used as HTML attributes (e.g. data-tier=tier_name), 
+// but not when used as page text (e.g. <label>{tier_name}</label>)
+
 class TierCheckbox extends React.Component {
    // I/P: tier_name, a string like "English Morphemes"
    // O/P: a checkbox with the ability to hide/show elements with tier-data={tier_name}
@@ -13,9 +17,9 @@ class TierCheckbox extends React.Component {
       this.setState({checkboxState: !this.state.checkboxState});
 
       if (this.state.checkboxState) {
-         $("tr[data-tier='" + this.props.tier_name + "']").css('display', 'none');
+         $("tr[data-tier='" + htmlEscape(this.props.tier_name) + "']").css('display', 'none');
       } else {
-         $("tr[data-tier='" + this.props.tier_name + "']").css('display', 'table-row');
+         $("tr[data-tier='" + htmlEscape(this.props.tier_name) + "']").css('display', 'table-row');
       }
    }
 
