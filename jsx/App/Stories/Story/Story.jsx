@@ -13,9 +13,10 @@ export class Story extends React.Component {
         const storyJSON = await import(`~./data/json_files/${this.props.storyID}.json`);
         this.setState({ story: storyJSON.default });
 
+        setupTextSync();
+
         // If there is a footer, i.e., if audio exists:
         if ($('#footer').length !== 0) {
-            setupTextSync();
             // If video exists:
             if ($('#video').length !== 0) {
                 Video.show();
@@ -31,7 +32,6 @@ export class Story extends React.Component {
         }
 
         const story = this.state.story;
-        console.log(story);
         const sentences = story['sentences'];
         const timed = (story['metadata']['timed']);
         let footer = null;

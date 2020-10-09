@@ -48,7 +48,7 @@ jobs:
           git fetch upstream
           remote_head_hash=$(git rev-parse "upstream/$upstream_branch")
           echo "::set-env name=remote_head_hash::$remote_head_hash"
-          git merge --no-commit --no-ff "upstream/$upstream_branch"
+          git merge --no-commit --no-ff -Xtheirs "upstream/$upstream_branch"
           # revert any updates in data path
           git reset -- data
           git checkout -- data

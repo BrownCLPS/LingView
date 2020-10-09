@@ -43,7 +43,7 @@
     "rebuild-db-offline": "cross-env MISSING_MEDIA=ignore node preprocessing/rebuild.js",
     "webpack": "webpack-cli --config webpack.config.js",
     "webpack-watch": "npm run webpack -- --watch --progress",
-    "bundle": "shx rm -rf bundle/ && shx mkdir -p bundle/media_files/ && shx cp -r index.html build/ css/ data/media_files/ images/ bundle/",
+    "bundle": "shx rm -rf bundle/ && shx mkdir -p bundle/data && shx cp -r index.html build/ css/ images/ bundle/ && shx cp -r data/media_files bundle/data/media_files",
     "quick-build-online": "npm run rebuild-db-online && npm run webpack && echo \"Done! index.html is ready. To bundle LingView, run \"npm run bundle\".\"",
     "quick-build-offline": "npm run rebuild-db-offline && npm run webpack && echo \"Done! index.html is ready. To bundle LingView, run \"npm run bundle\".\""
   },
