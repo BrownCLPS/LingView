@@ -10,6 +10,8 @@ class tierRegistry {
     );
   }
 
+  // Must return a different string for each tier type in the corpus
+  // so that tier names can be guaranteed to be unique.
   static decodeType(type) {
     /*
     // English UI text:
@@ -46,6 +48,8 @@ class tierRegistry {
     this.isoDict = isoDict;
   }
 
+  // Must return a different string for each language in the corpus
+  // so that tier names can be guaranteed to be unique.
   decodeLang(lang) {
 
     const desiredName = "Native name"; // or we might want to use "ISO language name"
@@ -87,6 +91,10 @@ class tierRegistry {
     return lang;
   }
 
+  // LingView assumes that each tier has a unique name. 
+  // If getTierName returns the same name for two different tiers in your corpus,
+  // some features (specifically, showing/hiding tiers and narrowing search 
+  // results via checkboxes) will work incorrectly. 
   getTierName(lang, type) {
     /*
     // English UI text:
