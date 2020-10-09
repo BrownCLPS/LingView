@@ -53,7 +53,7 @@ export class Search extends React.Component {
             findAllMatches: true,
             tokenize: true, // not in the options documented at https://fusejs.io/api/options.html
             matchAllTokens: true,
-            threshold: 15, // 0.0 means perfect match, 1.0 matches anything, default is 0.6
+            threshold: 0.2, // 0.0 means perfect match, 1.0 matches anything, default is 0.6
             distance: 0,
             maxPatternLength: 64, // not in the options documented at https://fusejs.io/api/options.html
             minMatchCharLength: 1,
@@ -74,17 +74,15 @@ export class Search extends React.Component {
         }
         let searchResult = this.fuse.search(query).slice(0, 25);
 
-        console.log("Search result:");
+        console.log("Search results:");
         console.log(searchResult);
-        // const displayTable = document.getElementById("searchResults");
-        // displayTable.innerHTML = ""; (DON'T DO THIS)
         let searchResults = [];
         for (var i = 0, j = searchResult.length; i < j; i++) {
             if ('speaker' in searchResult[i]) {
-                let component = (<SearchSentence sentence={searchResult[i]} true />);
+                let component = (<SearchSentence sentence={searchResult[i].item} true />);
                 searchResults.push(component);
             } else {
-                let component = (<SearchSentence sentence={searchResult[i]} false />);
+                let component = (<SearchSentence sentence={searchResult[i].item} false />);
                 searchResults.push(component);
             }
         }

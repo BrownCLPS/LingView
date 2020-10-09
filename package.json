@@ -13,7 +13,7 @@
     "cross-env": "^7.0.2",
     "datatables.net-dt": "^1.10.20",
     "ent": "^2.2.0",
-    "fuse.js": "^3.2.1",
+    "fuse.js": "^6.4.1",
     "html-es6cape": "^1.0.5",
     "inquirer": "^5.0.0",
     "jquery": "^3.5.0",
