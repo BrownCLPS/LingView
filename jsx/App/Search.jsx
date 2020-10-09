@@ -49,14 +49,12 @@ export class Search extends React.Component {
         console.log(fields);
 
         var options = {
-            shouldSort: true,
-            findAllMatches: true,
-            tokenize: true, // not in the options documented at https://fusejs.io/api/options.html
-            matchAllTokens: true,
-            threshold: 0.2, // 0.0 means perfect match, 1.0 matches anything, default is 0.6
-            distance: 0,
-            maxPatternLength: 64, // not in the options documented at https://fusejs.io/api/options.html
-            minMatchCharLength: 1,
+            isCaseSensitive: false,
+            shouldSort: true, // sort by relevance
+            findAllMatches: true, // not just the first match in each tier
+            ignoreLocation: true, // the match can be anywhere within the tier
+            ignoreFieldNorm: true, // equal relevance for matches in long vs short strings
+            threshold: 0.2, // 0.0 means perfect matches only, 1.0 matches anything
             keys: fields
         };
         
