@@ -8,7 +8,6 @@ function Row({ numSlots, values, tier }) {
 	//      values, list of segments (e.g., morphemes) with start/end times
 	//      tier, the tier name
 	// O/P: single row of glossed sentence, with colspan spacing
-	// Status: tested, working
 
 	// Building a row requires slots to determine the width of certain
 	// table elements. Each element will have a start and end slot, and 
@@ -38,11 +37,6 @@ function Row({ numSlots, values, tier }) {
 		}
 		// Create element with correct 'colSpan' width:
 		const size = String(endSlot - startSlot);
-		// if (size == numSlots) { // Add quotes to full-width lines
-		// 	output.push(<td key={id.generate()} colSpan={size}>{'"' + text + '"'}</td>);
-		// } else {
-		// 	output.push(<td key={id.generate()} colSpan={size}>{text}</td>);
-		// }
 		output.push(<td key={id.generate()} colSpan={size}>{text}</td>);
 		currentSlot = endSlot;
 	}
@@ -57,12 +51,10 @@ function Row({ numSlots, values, tier }) {
 export function Sentence({ sentence }) {
 	// I/P: sentence, a sentence
 	// O/P: table of glossed Row components
-	// Status: tested, working
 	let rowList = []; // to be output
-	// let rowList2 = []; // full-length dependent tiers
 	const numSlots = sentence['num_slots'];
-	// Add the indepentent tier, i.e., the top row, to the list of rows. Note that
-	// 'colSpan={numSlots}' ensures that this row spans the entire table.
+	// Add the indepentent tier, i.e., the top row, to the list of rows. 
+	// Note that 'colSpan={numSlots}' ensures that this row spans the entire table.
   if (sentence['noTopRow'] == null || sentence['noTopRow'] === 'false') {
     rowList.push(
       <tr data-tier={htmlEscape(sentence['tier'])}>
@@ -73,15 +65,9 @@ export function Sentence({ sentence }) {
 	const dependents = sentence['dependents']; // list of dependent tiers, flat structure
 	// Add each dependent tier to the row list:
 	for (const {values, tier} of dependents) {
-		// Tier attribute will be used for hiding/showing tiers:
-		// if (values.length > 1) {
-		// 	rowList.push(<Row key={id.generate()} numSlots={numSlots} values={values} tier={tier} />);
-		// } else {
-		// 	rowList2.push(<Row key={id.generate()} numSlots={numSlots} values={values} tier={tier} />);
-		// }
+		// Tier attribute will be used for hiding/showing tiers.
 		rowList.push(<Row key={id.generate()} numSlots={numSlots} values={values} tier={tier} />);
 	}
-	// rowList = rowList.concat(rowList2);
 	return <table className="gloss"><tbody>{rowList}</tbody></table>;
 }
 
@@ -89,17 +75,9 @@ export function Sentence({ sentence }) {
 export function SearchSentence({ sentence }) {
 	// I/P: sentence, a sentence
 	// O/P: displayed rows, along with a link to corresponding story
-	// Status: tested, working
 	let rowList = []; // to be output
 	const numSlots = sentence['num_slots'];
     const title = sentence['title'];
-	//if (sentence['noTopRow'] == null || sentence['noTopRow'] === 'false') {
-	//	rowList.push(
-	//	  <tr data-tier={sentence['tier']}>
-	//	    <td colSpan={numSlots} className="topRow">{sentence['text']}</td>
-	//	  </tr>
-	//	);
-	//}
 	const dependents = sentence['dependents'];
 	// Add each dependent tier to the row list:
 	for (const tier of Object.keys(dependents)) {
