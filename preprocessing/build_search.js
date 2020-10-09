@@ -49,7 +49,7 @@ function buildSearch(jsonFileNames) {
         data.push(reformatted);
     }
   
-    return { "tier IDs": tierNames, "sentences": data };
+    return { "tier IDs": Array.from(tierNames), "sentences": data };
 }
 
 module.exports = { buildSearch };
