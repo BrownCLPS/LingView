@@ -31,16 +31,11 @@ function isSeparator(char) {
 // this word might come from a different language than what FLEx is trying 
 // to detect in this file, so this word should not be marked as a punctuation. 
 function isPunctuation(word) {
-  if (word.item[0].$.type === "punct")  {
-    const wordElement = word.item[0]._;
-    // The Regex checks if the word contains digits or alpha letters.
-    // This expression also includes special characters, such as accented letters
-    // or other letters not existent in English. 
-    if (wordElement && wordElement.match(/^[0-9a-zA-ZÀ-ÿ]+$/)) {
-      return false; 
-    } else {
-      return true; 
-    }
+  if (flexReader.getWordType(word) === "punct") {
+    const wordValue = flexReader.getWordValue(word);
+    // The Regex checks if the word contains any alphanumeric characters, 
+    // including special alphabetic characters such as accented letters. 
+    return wordValue == null || !wordValue.match(/^[0-9a-zA-ZÀ-ÿ]+$/);
   }
   return false; 
 }
@@ -194,7 +189,7 @@ function repackageMorphs(morphs, tierReg, startSlot) {
           }
           morphTokens[tierName][slotNum] = {
             "value": flexReader.getTierValue(tier),
-            "tier type": tier.$.type,
+            "tier type": flexReader.getTierType(tier),
             "part of speech": flexReader.getMorphPartOfSpeech(morph),
           };
         }
@@ -338,12 +333,11 @@ function getSentenceJson(sentence, speakerReg, tierReg, wordsTierID, hasTimestam
 // updates the index and story files for this interlinear text, 
 //   then executes the callback
 function preprocessText(jsonIn, jsonFilesDir, fileName, callback) {
-  let storyID = jsonIn.$.guid;
+  let storyID = flexReader.getDocumentID(jsonIn);
   
   let metadata = mediaFinder.improveFLExIndexData(fileName, storyID, jsonIn);
   const speakerReg = new speakerRegistry();
   metadata['speakers'] = speakerReg.getSpeakersList();
-  // updateIndex(metadata, "data/index.json", storyID);
 
   const jsonOut = {
     "metadata": metadata,
