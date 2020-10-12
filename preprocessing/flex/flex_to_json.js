@@ -9,6 +9,7 @@ const speakerRegistry = require('../speaker_registry').speakerRegistry;
 const tierRegistry = require('./tier_registry').tierRegistry;
 const mediaFinder = require('../find_media');
 const flexReader = require('./read_flex');
+const getTierName = require('./flex_tier_names.js').getTierName;
 
 // punct - a string
 // return a boolean indicating whether 'punct' should typically appear 
@@ -131,20 +132,20 @@ function concatWords(sentenceTokens) {
 //   formatted for use by the website
 function getDependentsJson(morphsJson) {
   const dependentsJson = [];
-  for (const tierID in morphsJson) {
-    if (morphsJson.hasOwnProperty(tierID)) {
+  for (const tierName in morphsJson) {
+    if (morphsJson.hasOwnProperty(tierName)) {
       const valuesJson = [];
-      for (const start_slot in morphsJson[tierID]) {
-        if (morphsJson[tierID].hasOwnProperty(start_slot)) {
+      for (const start_slot in morphsJson[tierName]) {
+        if (morphsJson[tierName].hasOwnProperty(start_slot)) {
           valuesJson.push({
             "start_slot": parseInt(start_slot, 10),
-            "end_slot": morphsJson[tierID][start_slot]["end_slot"],
-            "value": morphsJson[tierID][start_slot]["value"]
+            "end_slot": morphsJson[tierName][start_slot]["end_slot"],
+            "value": morphsJson[tierName][start_slot]["value"]
           })
         }
       }
       dependentsJson.push({
-        "tier": tierID,
+        "tier": tierName,
         "values": valuesJson
       });
     }
@@ -171,14 +172,15 @@ function repackageMorphs(morphs, tierReg, startSlot) {
   const morphTokens = {};
   let slotNum = startSlot;
   for (const morph of morphs) {
-    for (const tier of flexReader.getMorphTiers(morph)) {
-      const tierID = tierReg.maybeRegisterTier(tier.$.lang, tier.$.type, true);
-      if (tierID != null) {
-        if (!morphTokens.hasOwnProperty(tierID)) {
-          morphTokens[tierID] = {};
+    for (const tier of flexReader.getTiers(morph)) {
+      const tierName = getTierName(flexReader.getTierLang(tier), flexReader.getTierType(tier));
+      tierReg.maybeRegisterTier(tierName, true);
+      if (tierName != null) {
+        if (!morphTokens.hasOwnProperty(tierName)) {
+          morphTokens[tierName] = {};
         }
-        morphTokens[tierID][slotNum] = {
-          "value": flexReader.getMorphTierValue(tier),
+        morphTokens[tierName][slotNum] = {
+          "value": flexReader.getTierValue(tier),
           "tier type": tier.$.type,
           "part of speech": flexReader.getMorphPartOfSpeech(morph),
         };
@@ -189,13 +191,13 @@ function repackageMorphs(morphs, tierReg, startSlot) {
 
   // Concatenating step:
   let morphsJson = {};
-  for (const tierID in morphTokens) {
-    if (morphTokens.hasOwnProperty(tierID)) {
-      if (!morphsJson.hasOwnProperty(tierID)) {
-        morphsJson[tierID] = {};
+  for (const tierName in morphTokens) {
+    if (morphTokens.hasOwnProperty(tierName)) {
+      if (!morphsJson.hasOwnProperty(tierName)) {
+        morphsJson[tierName] = {};
       }
-      morphsJson[tierID][startSlot] = {
-        "value": concatMorphs(morphTokens[tierID], startSlot, slotNum),
+      morphsJson[tierName][startSlot] = {
+        "value": concatMorphs(morphTokens[tierName], startSlot, slotNum),
         "end_slot": slotNum
       };
     }
@@ -232,12 +234,13 @@ function repackageFreeGlosses(freeGlosses, tierReg, endSlot) {
   const glossStartSlot = 0;
   const morphsJson = {};
   for (const gloss of freeGlosses) {
-    const tierID = tierReg.maybeRegisterTier(gloss.$.lang, "free", false);
-    if (tierID != null) {
-      if (!morphsJson.hasOwnProperty(tierID)) {
-        morphsJson[tierID] = {};
+    const tierName = getTierName(flexReader.getFreeGlossLang(gloss), "free");
+    tierReg.maybeRegisterTier(tierName, false);
+    if (tierName != null) {
+      if (!morphsJson.hasOwnProperty(tierName)) {
+        morphsJson[tierName] = {};
       }
-      morphsJson[tierID][glossStartSlot] = {
+      morphsJson[tierName][glossStartSlot] = {
         "value": flexReader.getFreeGlossValue(gloss),
         "end_slot": endSlot
       };
@@ -255,7 +258,7 @@ function repackageFreeGlosses(freeGlosses, tierReg, endSlot) {
 // returns an object describing the sentence, 
 //   structured correctly for use by the website
 function getSentenceJson(sentence, speakerReg, tierReg, wordsTierID, hasTimestamps) {
-  const morphsJson = {}; // tierID -> start_slot -> {"value": value, "end_slot": end_slot}
+  const morphsJson = {}; // tierName -> start_slot -> {"value": value, "end_slot": end_slot}
   morphsJson[wordsTierID] = {}; // FIXME words tier will show up even when the sentence is empty of words
 
   let slotNum = 0;
@@ -335,13 +338,14 @@ function preprocessText(jsonIn, jsonFilesDir, fileName, callback) {
 
   let textLang = flexReader.getDocumentSourceLang(jsonIn);
   const tierReg = new tierRegistry();
-  const wordsTierID = tierReg.maybeRegisterTier(textLang, "words", true);
+  const wordsTierName = getTierName(textLang, "words");
+  tierReg.maybeRegisterTier(wordsTierName, true);
 
   const hasTimestamps = flexReader.documentHasTimestamps(jsonIn);
   
   for (const paragraph of flexReader.getDocumentParagraphs(jsonIn)) {
     for (const sentence of flexReader.getParagraphSentences(paragraph)) {
-      jsonOut.sentences.push(getSentenceJson(sentence, speakerReg, tierReg, wordsTierID, hasTimestamps));
+      jsonOut.sentences.push(getSentenceJson(sentence, speakerReg, tierReg, wordsTierName, hasTimestamps));
     }
   }
 

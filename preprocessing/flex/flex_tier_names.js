@@ -1,6 +1,6 @@
 /* functions for naming Flex tiers */
 
-var isoDict = require('./iso_dict.json');
+const isoDict = require('./iso_dict.json');
 
 function isIgnored(type) {
   // Omit these tier types from the website, because they're ugly and mostly useless.

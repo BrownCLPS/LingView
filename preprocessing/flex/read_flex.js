@@ -140,10 +140,6 @@ function getWordLang(word) {
   return word.item[0].$.lang;
 }
 
-function getMorphTiers(morph) {
-  return morph.item;
-}
-
 function getMorphPartOfSpeech(morph) {
   if (morph.$ == null) { // TODO I have no idea why this happens sometimes but it does
     return null;
@@ -151,8 +147,24 @@ function getMorphPartOfSpeech(morph) {
   return morph.$.type;
 }
 
-function getMorphTierValue(morphTier) {
-  return morphTier._;
+function getTiers(morph) {
+  return morph.item;
+}
+
+function getTierLang(tier) {
+  return tier.$.lang;
+}
+
+function getTierType(tier) {
+  return tier.$.type;
+}
+
+function getTierValue(tier) {
+  return tier._;
+}
+
+function getFreeGlossLang(freeGloss) {
+  return freeGloss.$.lang
 }
 
 function getFreeGlossValue(freeGloss) {
@@ -172,8 +184,11 @@ module.exports = {
   getSentenceWords: getSentenceWords,
   getWordMorphs: getWordMorphs,
   getWordValue: getWordValue,
-  getMorphTiers: getMorphTiers,
   getMorphPartOfSpeech: getMorphPartOfSpeech,
-  getMorphTierValue: getMorphTierValue,
+  getTiers: getTiers,
+  getTierLang: getTierLang,
+  getTierType: getTierType,
+  getTierValue: getTierValue,
+  getFreeGlossLang: getFreeGlossLang,
   getFreeGlossValue: getFreeGlossValue,
 };
