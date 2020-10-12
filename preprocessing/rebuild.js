@@ -8,7 +8,6 @@ const buildSearch = require('./build_search').buildSearch;
 const flexFilesDir = "data/flex_files/";
 const elanFilesDir = "data/elan_files/";
 const jsonFilesDir = "data/json_files/";
-const isoFileName = "preprocessing/flex/iso_dict.json";
 const indexFileName = "data/index.json"; // stores metadata for all documents
 const searchIndexFileName = "data/search_index.json";
 
@@ -32,7 +31,7 @@ Promise.all([
   }),
   new Promise((resolve, reject) => {
     try {
-      flex.preprocess_dir(flexFilesDir, jsonFilesDir, isoFileName, resolve);
+      flex.preprocess_dir(flexFilesDir, jsonFilesDir, resolve);
     } catch (err) {
       reject(err);
     }

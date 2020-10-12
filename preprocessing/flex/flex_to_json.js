@@ -317,11 +317,10 @@ function getSentenceJson(sentence, speakerReg, tierReg, wordsTierID, hasTimestam
 // jsonIn - the JSON parse of the FLEx interlinear-text
 // jsonFilesDir - the directory for the output file describing this interlinear text
 // fileName - the path to the FLEx file
-// isoDict - an object correlating languages with ISO codes
 // callback - the function that will execute when the preprocessText function completes
 // updates the index and story files for this interlinear text, 
 //   then executes the callback
-function preprocessText(jsonIn, jsonFilesDir, fileName, isoDict, callback) {
+function preprocessText(jsonIn, jsonFilesDir, fileName, callback) {
   let storyID = jsonIn.$.guid;
   
   let metadata = mediaFinder.improveFLExIndexData(fileName, storyID, jsonIn);
@@ -335,7 +334,7 @@ function preprocessText(jsonIn, jsonFilesDir, fileName, isoDict, callback) {
   };
 
   let textLang = flexReader.getDocumentSourceLang(jsonIn);
-  const tierReg = new tierRegistry(isoDict);
+  const tierReg = new tierRegistry();
   const wordsTierID = tierReg.maybeRegisterTier(textLang, "words", true);
 
   const hasTimestamps = flexReader.documentHasTimestamps(jsonIn);
@@ -368,18 +367,10 @@ function preprocessText(jsonIn, jsonFilesDir, fileName, isoDict, callback) {
 
 // xmlFilesDir - a directory containing zero or more FLEx files
 // jsonFilesDir - a directory for output files describing individual interlinear texts
-// isoFileName - the file address of a JSON object matching languages to their ISO codes
 // callback - the function that will execute when the preprocess_dir function completes
 // updates the index and story files for each interlinear text, 
 //   then executes the callback
-function preprocess_dir(xmlFilesDir, jsonFilesDir, isoFileName, callback) {
-  let isoDict = {};
-  try {
-    isoDict = JSON.parse(fs.readFileSync(isoFileName));
-  } catch (err) {
-    console.log("Unable to read ISO codes file. Error was " + err + " Proceeding anyway...");
-  }
-
+function preprocess_dir(xmlFilesDir, jsonFilesDir, callback) {
   const xmlFileNames = fs.readdirSync(xmlFilesDir).filter(f => f[0] !== '.'); // excludes hidden files
 
   // use this to wait for all preprocess calls to terminate before executing the callback
@@ -415,7 +406,7 @@ function preprocess_dir(xmlFilesDir, jsonFilesDir, isoFileName, callback) {
         };
         
         for (const text of texts) {
-          preprocessText(text, jsonFilesDir, xmlFileName, isoDict, singleTextCallback);
+          preprocessText(text, jsonFilesDir, xmlFileName, singleTextCallback);
         }
       });
     });

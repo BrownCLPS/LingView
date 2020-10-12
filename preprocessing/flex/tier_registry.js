@@ -1,3 +1,5 @@
+var isoDict = require('./iso_dict.json');
+
 class tierRegistry {
 
   static isIgnored(type) {
@@ -45,7 +47,6 @@ class tierRegistry {
 
   constructor(isoDict) {
     this.jsonTierIDs = {}; // format that should be written to file
-    this.isoDict = isoDict;
   }
 
   // Must return a different string for each language in the corpus
@@ -73,18 +74,18 @@ class tierRegistry {
     }
 
     // if lang is an iso code, decode it
-    if (this.isoDict.hasOwnProperty(lcLang)) {
-      return this.isoDict[lcLang][desiredName];
+    if (isoDict.hasOwnProperty(lcLang)) {
+      return isoDict[lcLang][desiredName];
     }
 
     // if lang starts with a (three-letter or two-letter) iso code, decode it
     const firstThreeLetters = lcLang.substr(0, 3);
-    if (this.isoDict.hasOwnProperty(firstThreeLetters)) {
-      return this.isoDict[firstThreeLetters][desiredName];
+    if (isoDict.hasOwnProperty(firstThreeLetters)) {
+      return isoDict[firstThreeLetters][desiredName];
     }
     const firstTwoLetters = lcLang.substr(0, 2);
-    if (this.isoDict.hasOwnProperty(firstTwoLetters)) {
-      return this.isoDict[firstTwoLetters][desiredName];
+    if (isoDict.hasOwnProperty(firstTwoLetters)) {
+      return isoDict[firstTwoLetters][desiredName];
     }
 
     // as a last resort, return without decoding
