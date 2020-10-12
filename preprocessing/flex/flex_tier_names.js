@@ -1,4 +1,7 @@
-/* functions for naming Flex tiers */
+/* 
+Functions for naming Flex tiers. 
+Edit these if you want tier names to display differently on your LingView site. 
+*/
 
 const isoDict = require('./iso_dict.json');
 
@@ -12,7 +15,7 @@ function decodeType(type) {
         case "cf": return "morpheme (citation form)";
         case "gls": return "morpheme gloss";
         case "msa": return "part of speech";
-        case "variantTypes": return "variant type"; // indicates when a morpheme is a spelling variant, free variant, etc.
+        case "variantTypes": return "type of variant"; // indicates when a morpheme is a spelling variant, free variant, etc.
         case "hn": return "homophone number"; // indicates which of multiple look-alike morphemes it is
     default: return type;
     }
@@ -28,6 +31,10 @@ function decodeType(type) {
       return "Glosa de morfema";
     case "msa":
       return "Parte del habla";
+    case "variantTypes":
+      return "Clase de variedad";
+    case "hn":
+      return "Número de homòfono";
     case "words":
       return "Palabra";
     case "free":

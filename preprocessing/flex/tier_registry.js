@@ -1,16 +1,16 @@
 class tierRegistry {
 
   constructor() {
-    this.jsonTierIDs = {}; // format that should be written to file
+    this.tierIDs = {}; // format that should be written to file
   }
 
   getTiersJson() {
-    return this.jsonTierIDs;
+    return this.tierIDs;
   }
 
   // if this is a new tier, include it in metadata
   registerTier(tierName, isSubdivided) {
-    this.jsonTierIDs[tierName] = {
+    this.tierIDs[tierName] = {
       subdivided: isSubdivided,
     };
   }
