@@ -8,13 +8,11 @@ class tierRegistry {
     return this.jsonTierIDs;
   }
 
-  // if this is a new, non-ignored tier, include it in metadata
-  maybeRegisterTier(tierName, isSubdivided) {
-    if (tierName != null) {
-      this.jsonTierIDs[tierName] = {
-        subdivided: isSubdivided,
-      };
-    }
+  // if this is a new tier, include it in metadata
+  registerTier(tierName, isSubdivided) {
+    this.jsonTierIDs[tierName] = {
+      subdivided: isSubdivided,
+    };
   }
 }
 

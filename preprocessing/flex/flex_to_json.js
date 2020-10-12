@@ -45,6 +45,17 @@ function isPunctuation(word) {
   return false; 
 }
 
+function isIgnored(tierType) {
+  // Omit these tier types from the website, because they're ugly and mostly useless.
+  // See flex_tier_names.js for an explanation of these types
+  return (
+      tierType === "variantTypes" ||
+      tierType === "hn" ||
+      tierType === "glsAppend" ||
+      tierType === "msa"
+  );
+}
+
 // metadata - a metadata object
 // indexFilePath - a string, the address of the index in the filesystem
 // storyID - a string, the unique identifier used for the current interlinear text within the index
@@ -173,17 +184,20 @@ function repackageMorphs(morphs, tierReg, startSlot) {
   let slotNum = startSlot;
   for (const morph of morphs) {
     for (const tier of flexReader.getTiers(morph)) {
-      const tierName = getTierName(flexReader.getTierLang(tier), flexReader.getTierType(tier));
-      tierReg.maybeRegisterTier(tierName, true);
-      if (tierName != null) {
-        if (!morphTokens.hasOwnProperty(tierName)) {
-          morphTokens[tierName] = {};
+      const tierType = flexReader.getTierType(tier);
+      if (!isIgnored(tierType)) {
+        const tierName = getTierName(flexReader.getTierLang(tier), tierType);
+        tierReg.registerTier(tierName, true);
+        if (tierName != null) {
+          if (!morphTokens.hasOwnProperty(tierName)) {
+            morphTokens[tierName] = {};
+          }
+          morphTokens[tierName][slotNum] = {
+            "value": flexReader.getTierValue(tier),
+            "tier type": tier.$.type,
+            "part of speech": flexReader.getMorphPartOfSpeech(morph),
+          };
         }
-        morphTokens[tierName][slotNum] = {
-          "value": flexReader.getTierValue(tier),
-          "tier type": tier.$.type,
-          "part of speech": flexReader.getMorphPartOfSpeech(morph),
-        };
       }
     }
     slotNum++;
@@ -235,7 +249,7 @@ function repackageFreeGlosses(freeGlosses, tierReg, endSlot) {
   const morphsJson = {};
   for (const gloss of freeGlosses) {
     const tierName = getTierName(flexReader.getFreeGlossLang(gloss), "free");
-    tierReg.maybeRegisterTier(tierName, false);
+    tierReg.registerTier(tierName, false);
     if (tierName != null) {
       if (!morphsJson.hasOwnProperty(tierName)) {
         morphsJson[tierName] = {};
@@ -339,7 +353,7 @@ function preprocessText(jsonIn, jsonFilesDir, fileName, callback) {
   let textLang = flexReader.getDocumentSourceLang(jsonIn);
   const tierReg = new tierRegistry();
   const wordsTierName = getTierName(textLang, "words");
-  tierReg.maybeRegisterTier(wordsTierName, true);
+  tierReg.registerTier(wordsTierName, true);
 
   const hasTimestamps = flexReader.documentHasTimestamps(jsonIn);
   

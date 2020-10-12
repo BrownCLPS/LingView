@@ -2,16 +2,6 @@
 
 const isoDict = require('./iso_dict.json');
 
-function isIgnored(type) {
-  // Omit these tier types from the website, because they're ugly and mostly useless.
-  return (
-      type === "variantTypes" || // variantTypes indicates when a morpheme is a spelling variant, free variant, etc.
-      type === "hn" || // hn, "homophone number", indicates which of multiple look-alike morphemes it is.
-      type === "glsAppend" ||
-      type === "msa" // msa is the part of speech
-  );
-}
-
 // Must return a different string for each tier type in the corpus
 // so that tier names can be guaranteed to be unique.
 function decodeType(type) {
@@ -20,8 +10,10 @@ function decodeType(type) {
     switch(type) {
         case "txt": return "morpheme (text)";
         case "cf": return "morpheme (citation form)";
-        case "gls": return "morpheme gloss"
+        case "gls": return "morpheme gloss";
         case "msa": return "part of speech";
+        case "variantTypes": return "variant type"; // indicates when a morpheme is a spelling variant, free variant, etc.
+        case "hn": return "homophone number"; // indicates which of multiple look-alike morphemes it is
     default: return type;
     }
   */
@@ -53,7 +45,7 @@ function decodeLang(lang) {
   const lcLang = lang.toLowerCase(); // ignore capitalization when decoding
 
   // Override the usual iso-based decoding for some language codes
-  switch (lang) {
+  switch (lcLang) {
     // case "flex-language-name-here": return "desired-decoded-name-here";
     case "con-Latn-EC":
       return "A'ingae (Borman)";
@@ -87,16 +79,11 @@ function decodeLang(lang) {
   return lang;
 }
 
-// if the tier is ignored, return null; else return its name
 // Note: LingView assumes that each tier has a unique name. 
 // If getTierName returns the same name for two different tiers in your corpus,
 // some features (specifically, showing/hiding tiers and narrowing the search 
 // results via checkboxes) will work incorrectly. 
 function getTierName(lang, type) {
-  if (isIgnored(type)) {
-    return null;
-  }
-  
   // English UI text:
   // return decodeLang(lang) + " " + decodeType(type);
 
