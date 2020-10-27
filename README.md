@@ -26,4 +26,4 @@ Using LingView? We'd love to hear from you! You can reach us at [kalinda.pride@g
 
 Stuck? Start by reading our paper, browsing the wiki, and playing around with the software for an hour or two. If those don't solve your problem, [contact us](mailto:kalinda.pride@gmail.com).
 
-Contributors welcome!
+[Contributors welcome!](https://github.com/BrownCLPS/LingView/wiki/Contributors)
