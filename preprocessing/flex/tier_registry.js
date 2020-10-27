@@ -8,7 +8,7 @@ class tierRegistry {
     return this.tierIDs;
   }
 
-  // if this is a new tier, include it in metadata
+  // include this tier in the metadata
   registerTier(tierName, isSubdivided) {
     this.tierIDs[tierName] = {
       subdivided: isSubdivided,
