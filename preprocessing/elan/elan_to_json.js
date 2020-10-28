@@ -473,7 +473,7 @@ function preprocess(adocIn, pfsxIn, jsonFilesDir, xmlFileName, callback) {
   callback();
 }
 
-function preprocess_dir(eafFilesDir, jsonFilesDir, callback) {
+function preprocessDir(eafFilesDir, jsonFilesDir, callback) {
   const eafFileNames = fs.readdirSync(eafFilesDir).filter(f => 
     f[0] !== "." && f.slice(-4) !== 'pfsx'
   ); // excludes pfsx files (which are generated just by opening ELAN) and hidden files
@@ -521,6 +521,6 @@ function preprocess_dir(eafFilesDir, jsonFilesDir, callback) {
 }
 
 module.exports = {
-  preprocess_dir: preprocess_dir,
+  preprocessDir: preprocessDir,
   preprocess: preprocess,
 };

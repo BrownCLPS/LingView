@@ -48,8 +48,8 @@ function decodeType(type) {
 // so that tier names can be guaranteed to be unique.
 function decodeLang(lang) {
 
-  const desiredName = "Native name"; // or we might want to use "ISO language name"
   
+  const desiredName = "Native name (endonym)"; // or we might want to use "ISO language name"
   // Override the usual iso-based decoding for some language codes
   switch (lang) {
     // case "flex-language-name-here": return "desired-decoded-name-here";
@@ -59,7 +59,7 @@ function decodeLang(lang) {
       return "a'ingae (ortografía nueva)";
     case "cof":
       return "a'ingae (con cambio de código)";
-    case "defaultLang":
+    case "defaultlang":
       return "defaultLang";
 
     // for Spanish UI text:
@@ -70,7 +70,7 @@ function decodeLang(lang) {
   }
 
   const lcLang = lang.toLowerCase(); // ignore capitalization when decoding
-
+  
   // if lang is an iso code, decode it
   if (isoDict.hasOwnProperty(lcLang)) {
     return isoDict[lcLang][desiredName];
