@@ -31,29 +31,29 @@ Promise.all([
   }),
   new Promise((resolve, reject) => {
     try {
-      flex.preprocess_dir(flexFilesDir, jsonFilesDir, resolve);
+      flex.preprocessDir(flexFilesDir, jsonFilesDir, resolve);
     } catch (err) {
       reject(err);
     }
   })
 ])
-  .then(() => {
-    console.log('Done preprocessing ELAN and FLEx!');
+.then(() => {
+  console.log('Done preprocessing ELAN and FLEx!');
 
-    console.log(global.missingMediaFiles.length, 'Missing media files:', global.missingMediaFiles);
+  console.log(global.missingMediaFiles.length, 'Missing media files:', global.missingMediaFiles);
 
-    return fs.promises.readdir(path.resolve(__dirname, "..", jsonFilesDir)); // path.resolve might not be necessary here
-  })
-  .then((jsonFilesEntries) => {
-    const storyJsonFileNames = jsonFilesEntries.filter(s => s.endsWith('.json'))
-    const searchIndex = buildSearch(storyJsonFileNames);
-    // Note: overwriting any pre-existing data/search_index.json
-    return fs.promises.writeFile(searchIndexFileName, JSON.stringify(searchIndex), 'utf8');
-  })
-  .then(() => {
-    console.log('Successfully built and wrote search index.')
-  })
-  .catch((err) => {
-    console.error('Error encountered in rebuild script:');
-    console.error(err);
-  });
+  return fs.promises.readdir(path.resolve(__dirname, "..", jsonFilesDir)); // path.resolve might not be necessary here
+})
+.then((jsonFilesEntries) => {
+  const storyJsonFileNames = jsonFilesEntries.filter(s => s.endsWith('.json'))
+  const searchIndex = buildSearch(storyJsonFileNames);
+  // Note: overwriting any pre-existing data/search_index.json
+  return fs.promises.writeFile(searchIndexFileName, JSON.stringify(searchIndex), 'utf8');
+})
+.then(() => {
+  console.log('Successfully built and wrote search index.')
+})
+.catch((err) => {
+  console.error('Error encountered in rebuild script:');
+  console.error(err);
+});
