@@ -11,26 +11,6 @@ const mediaFinder = require('../find_media');
 const flexReader = require('./read_flex');
 const getTierName = require('./flex_tier_names.js').getTierName;
 
-const readFilePromise = filePath => new Promise((resolve, reject) => {
-  fs.readFile(filePath, function (err, xmlData) {
-    if (err) {
-      reject(err);
-    } else {
-      resolve(xmlData);
-    }
-  });
-});
-
-const parseXmlPromise = xmlData => new Promise((resolve, reject) => {
-  parseXml(xmlData, function (err, jsonData) {
-    if (err) {
-      reject(err);
-    } else {
-      resolve(jsonData);
-    }
-  });
-});
-
 // punct - a string
 // return a boolean indicating whether 'punct' should typically appear 
 //   preceded by a space, but not followed by a space, in text
@@ -349,9 +329,10 @@ function getSentenceJson(sentence, speakerReg, tierReg, wordsTierID, hasTimestam
 // jsonIn - the JSON parse of the FLEx interlinear-text
 // jsonFilesDir - the directory for the output file describing this interlinear text
 // fileName - the path to the FLEx file
+// callback - the function that will execute when the preprocessText function completes
 // updates the index and story files for this interlinear text, 
 //   then executes the callback
-function preprocessText(jsonIn, jsonFilesDir, fileName) {
+function preprocessText(jsonIn, jsonFilesDir, fileName, callback) {
   let storyID = flexReader.getDocumentID(jsonIn);
   
   let metadata = mediaFinder.improveFLExIndexData(fileName, storyID, jsonIn);
@@ -386,47 +367,62 @@ function preprocessText(jsonIn, jsonFilesDir, fileName) {
   const jsonPath = jsonFilesDir + storyID + ".json";
   fs.writeFile(jsonPath, prettyString, function (err) {
     if (err) {
-      throw err;
+      console.log(err);
+    } else {
+      // console.log("✅  Correctly wrote " + storyID + ".json");
+      if (callback != null) {
+        callback();
+      }
     }
   });
 }
 
-function preprocessXmlFile(xmlFilesDir, xmlFileName, jsonFilesDir) {
-  console.log("Processing " + xmlFileName);
-  const xmlPath = xmlFilesDir + xmlFileName;
-  readFilePromise(xmlPath)
-  .then(xmlData => parseXmlPromise(xmlData))
-  .then(jsonData => jsonData['document']['interlinear-text'])
-  .then(texts => Promise.all(
-      texts.map(text => new Promise((resolve, reject) => {
-        try {
-          preprocessText(text, jsonFilesDir, xmlFileName);
-        } catch (err) {
-          reject(err);
-        }
-      }))
-    )
-  );
-}
-
 // xmlFilesDir - a directory containing zero or more FLEx files
 // jsonFilesDir - a directory for output files describing individual interlinear texts
+// callback - the function that will execute when the preprocess_dir function completes
 // updates the index and story files for each interlinear text, 
-//   throwing an error if there was a problem
-function preprocessDir(xmlFilesDir, jsonFilesDir) {
+//   then executes the callback
+function preprocessDir(xmlFilesDir, jsonFilesDir, callback) {
   const xmlFileNames = fs.readdirSync(xmlFilesDir).filter(f => f[0] !== '.'); // excludes hidden files
-  Promise.all(
-    xmlFileNames.map(xmlFileName => new Promise((resolve, reject) => {
-      try {
-        preprocessXmlFile(xmlFilesDir, xmlFileName, jsonFilesDir);
-      } catch (err) {
-        reject(err);
-      }
-    }))
-  )
-  .then(() => {
-    console.log('Successfully built and wrote search index.')
-  });
+
+  // use this to wait for all preprocess calls to terminate before executing the callback
+  const status = {numJobs: xmlFileNames.length};
+  if (xmlFileNames.length === 0) {
+    callback();
+  }
+
+  const whenDone = function () {
+    status.numJobs--;
+    if (status.numJobs <= 0) {
+      callback();
+    }
+  };
+
+  for (const xmlFileName of xmlFileNames) {
+    console.log("Processing " + xmlFileName);
+    const xmlPath = xmlFilesDir + xmlFileName;
+    fs.readFile(xmlPath, function (err1, xmlData) {
+      if (err1) throw err1;
+      parseXml(xmlData, function (err2, jsonData) {
+        if (err2) throw err2;
+        
+        const texts = jsonData['document']['interlinear-text'];
+        
+        // wait for all preprocessText calls to terminate before executing whenDone
+        const singleFileStatus = {numJobs: texts.length};
+        const singleTextCallback = function () {
+          singleFileStatus.numJobs--;
+          if (singleFileStatus.numJobs <= 0) {
+            whenDone();
+          }
+        };
+        
+        for (const text of texts) {
+          preprocessText(text, jsonFilesDir, xmlFileName, singleTextCallback);
+        }
+      });
+    });
+  }
 }
 
 module.exports = {
