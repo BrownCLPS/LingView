@@ -49,10 +49,9 @@ function decodeType(type) {
 function decodeLang(lang) {
 
   const desiredName = "Native name"; // or we might want to use "ISO language name"
-  const lcLang = lang.toLowerCase(); // ignore capitalization when decoding
-
+  
   // Override the usual iso-based decoding for some language codes
-  switch (lcLang) {
+  switch (lang) {
     // case "flex-language-name-here": return "desired-decoded-name-here";
     case "con-Latn-EC":
       return "a'ingae (ortografía Borman)";
@@ -69,6 +68,8 @@ function decodeLang(lang) {
 
     default: // fall through
   }
+
+  const lcLang = lang.toLowerCase(); // ignore capitalization when decoding
 
   // if lang is an iso code, decode it
   if (isoDict.hasOwnProperty(lcLang)) {
