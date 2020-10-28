@@ -47,7 +47,6 @@ function decodeType(type) {
 // Must return a different string for each language in the corpus
 // so that tier names can be guaranteed to be unique.
 function decodeLang(lang) {
-
   
   const desiredName = "Native name (endonym)"; // or we might want to use "ISO language name"
   // Override the usual iso-based decoding for some language codes
@@ -59,7 +58,7 @@ function decodeLang(lang) {
       return "a'ingae (ortografía nueva)";
     case "cof":
       return "a'ingae (con cambio de código)";
-    case "defaultlang":
+    case "defaultLang":
       return "defaultLang";
 
     // for Spanish UI text:
@@ -70,7 +69,7 @@ function decodeLang(lang) {
   }
 
   const lcLang = lang.toLowerCase(); // ignore capitalization when decoding
-  
+
   // if lang is an iso code, decode it
   if (isoDict.hasOwnProperty(lcLang)) {
     return isoDict[lcLang][desiredName];
