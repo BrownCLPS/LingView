@@ -1,8 +1,8 @@
 const fs = require('fs');
 const path = require('path');
 
-const flex = require('./flex/flex_to_json');
-const elan = require('./elan/elan_to_json');
+const buildFlex = require('./flex/flex_to_json').preprocessDir;
+const buildElan = require('./elan/elan_to_json').preprocessDir;
 const buildSearch = require('./build_search').buildSearch;
 
 const flexFilesDir = "data/flex_files/";
@@ -24,14 +24,14 @@ if (!fs.existsSync(indexPath)) {
 Promise.all([
   new Promise((resolve, reject) => {
     try {
-      elan.preprocess_dir(elanFilesDir, jsonFilesDir, resolve);
+      buildElan(elanFilesDir, jsonFilesDir, resolve);
     } catch (err) {
       reject(err);
     }
   }),
   new Promise((resolve, reject) => {
     try {
-      flex.preprocessDir(flexFilesDir, jsonFilesDir, resolve);
+      buildFlex(flexFilesDir, jsonFilesDir, resolve);
     } catch (err) {
       reject(err);
     }
