@@ -56,8 +56,6 @@ function decodeLang(lang) {
       return "a'ingae (ortografía Borman)";
     case "con-Latn-EC-x-dureno":
       return "a'ingae (ortografía nueva)";
-    case "cof":
-      return "a'ingae (con cambio de código)";
     case "defaultLang":
       return "defaultLang";
 
