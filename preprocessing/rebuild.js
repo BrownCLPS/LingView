@@ -52,7 +52,8 @@ Promise.all([
   const index = JSON.parse(fs.readFileSync(indexFileName, "utf8"));
   for (storyID in index) {
     if (!storyIDs.includes(storyID)) {
-      // TODO warn about its media
+      console.log("Deleting story " + storyID + ". You might want to remove its audio or video files, too:");
+      console.log(index[storyID].media);
       delete index[storyID]; // remove this story from the index
 
       const json_path = jsonFilesDir + storyID + ".json";
