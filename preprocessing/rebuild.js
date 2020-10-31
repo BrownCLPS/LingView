@@ -45,13 +45,26 @@ Promise.all([
 
   console.log(global.missingMediaFiles.length, 'Missing media files:', global.missingMediaFiles);
 
-  return fs.promises.readdir(path.resolve(__dirname, "..", jsonFilesDir)); // path.resolve might not be necessary here
+  return storyIDs;
 })
-.then((jsonFilesEntries) => {
-  const storyJsonFileNames = jsonFilesEntries.filter(s => s.endsWith('.json'))
+.then((storyIDs) => {
+  // remove deleted stories from index and from data/json_files/
+  const index = JSON.parse(fs.readFileSync(indexFileName, "utf8"));
+  for (storyID in index) {
+    if (!storyIDs.includes(storyID)) {
+      // TODO warn about its media
+      delete index[storyID]; // remove this story from the index
+
+      const json_path = jsonFilesDir + storyID + ".json";
+      fs.unlink(json_path, function () {}); // delete this story's json file
+    }
+  }
+  fs.writeFileSync(indexFileName, JSON.stringify(index, null, 2), 'utf8');
+
+  const storyJsonFileNames = storyIDs.map(ID => ID + '.json');
   const searchIndex = buildSearch(storyJsonFileNames);
   // Note: overwriting any pre-existing data/search_index.json
-  return fs.promises.writeFile(searchIndexFileName, JSON.stringify(searchIndex), 'utf8');
+  return fs.promises.writeFile(searchIndexFileName, JSON.stringify(searchIndex, null, 2), 'utf8');
 })
 .then(() => {
   console.log('Successfully built and wrote search index.')
