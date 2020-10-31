@@ -473,21 +473,27 @@ function preprocess(adocIn, pfsxIn, jsonFilesDir, xmlFileName, callback) {
   callback();
 }
 
+// Updates the index and story files for each interlinear text, 
+//   then executes the callback, passing the list of all story IDs that were processed
+//   as an argument to the callback function. 
 function preprocessDir(eafFilesDir, jsonFilesDir, callback) {
   const eafFileNames = fs.readdirSync(eafFilesDir).filter(f => 
     f[0] !== "." && f.slice(-4) !== 'pfsx'
   ); // excludes pfsx files (which are generated just by opening ELAN) and hidden files
   
   // use this to wait for all preprocess calls to terminate before executing the callback
-  const status = {numJobs: eafFileNames.length};
+  const status = {
+    numJobs: eafFileNames.length,
+    storyIDs: [],
+  };
   if (eafFileNames.length === 0) {
-    callback();
+    callback(status.storyIDs);
   }
 
   const whenDone = function () {
     status.numJobs--;
     if (status.numJobs <= 0) {
-      callback();
+      callback(status.storyIDs);
     }
   };
 
@@ -514,6 +520,7 @@ function preprocessDir(eafFilesDir, jsonFilesDir, callback) {
       parseXml(xmlData, function (err2, jsonData) {
         if (err2) throw err2;
         const adoc = jsonData.ANNOTATION_DOCUMENT;
+        status.storyIDs.push(elanReader.getDocID(adoc));
         preprocess(adoc, pfsxJson, jsonFilesDir, eafFileName, whenDone);
       });
     });

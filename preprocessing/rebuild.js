@@ -37,8 +37,11 @@ Promise.all([
     }
   })
 ])
-.then(() => {
+.then((results) => {
   console.log('Done preprocessing ELAN and FLEx!');
+
+  const storyIDs = results[0].concat(results[1]);
+  console.log("The following stories were processed: " + storyIDs);
 
   console.log(global.missingMediaFiles.length, 'Missing media files:', global.missingMediaFiles);
 

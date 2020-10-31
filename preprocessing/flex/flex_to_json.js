@@ -379,22 +379,27 @@ function preprocessText(jsonIn, jsonFilesDir, fileName, callback) {
 
 // xmlFilesDir - a directory containing zero or more FLEx files
 // jsonFilesDir - a directory for output files describing individual interlinear texts
-// callback - the function that will execute when the preprocess_dir function completes
-// updates the index and story files for each interlinear text, 
-//   then executes the callback
+// callback - the function that will execute when the preprocess_dir function completes.
+//   The callback function should take a list of story IDs as argument. 
+// Updates the index and story files for each interlinear text, 
+//   then executes the callback, passing the list of all story IDs that were processed
+//   as an argument to the callback function. 
 function preprocessDir(xmlFilesDir, jsonFilesDir, callback) {
   const xmlFileNames = fs.readdirSync(xmlFilesDir).filter(f => f[0] !== '.'); // excludes hidden files
 
   // use this to wait for all preprocess calls to terminate before executing the callback
-  const status = {numJobs: xmlFileNames.length};
+  const status = {
+    numJobs: xmlFileNames.length,
+    storyIDs: [],
+  };
   if (xmlFileNames.length === 0) {
-    callback();
+    callback(status.storyIDs);
   }
 
   const whenDone = function () {
     status.numJobs--;
     if (status.numJobs <= 0) {
-      callback();
+      callback(status.storyIDs);
     }
   };
 
@@ -418,6 +423,7 @@ function preprocessDir(xmlFilesDir, jsonFilesDir, callback) {
         };
         
         for (const text of texts) {
+          status.storyIDs.push(flexReader.getDocumentID(text));
           preprocessText(text, jsonFilesDir, xmlFileName, singleTextCallback);
         }
       });
