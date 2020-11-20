@@ -1,10 +1,37 @@
 import React from 'react';
 
-export function AboutPage() {
+function renderEn() {
+  return (
+    <p> Hi! </p>
+  );
+}
+
+function renderFr() {
+  return (
+    <p> Bonjour! </p>
+  );
+}
+
+function renderSp() {
+  return (
+    <p> Hola! </p>
+  );
+}
+
+export function AboutPage({ lang }) {
+  let text;
+  if (lang === "en") {
+    text = renderEn();
+  }
+  else if (lang == "fr") {
+    text = renderFr();
+  }
+  else if (lang == "sp") {
+    text = renderSp();
+  }
   return (
       <div style={{margin: "0.25in"}}>
-          <p>Input content here :) </p>
-          <p>To customize this welcome text, edit the jsx/App/AboutPage.jsx file, then run webpack for your changes to take effect. </p>
+      {text}
       </div>
   );
 }
