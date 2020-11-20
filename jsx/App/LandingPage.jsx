@@ -18,7 +18,7 @@ const landingPageText = {
     </div>,
 };
 
-export function LandingPage() {
+export function LandingPage({ lang }) {
   return (
       <div style={{margin: "0.25in"}}>
       {landingPageText[lang]}

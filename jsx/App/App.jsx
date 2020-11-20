@@ -25,7 +25,7 @@ export function App({ data }) {
               <Route path="/story" render={props => <Stories />} />
               <Route path="/search" render={props => <Search />} />
               <Route exact path="/about" render={props => <AboutPage {...props} lang={lang}/>} />
-              <Route exact path="/glossary" render={props => <GlossaryPage/>} />
+              <Route exact path="/glossary" render={props => <GlossaryPage {...props} lang={lang}/>} />
           </div>
         </Router>
       <footer id="footer">
