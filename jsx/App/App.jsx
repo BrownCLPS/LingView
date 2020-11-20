@@ -20,7 +20,7 @@ export function App({ data }) {
     <div>
         <Router>
           <div>
-              <Route exact path="/" render={props => <LandingPage/>} />
+              <Route exact path="/" render={props => <LandingPage {...props} lang={lang}/>} />
               <Route exact path="/index" render={props => <StoryIndex />} />
               <Route path="/story" render={props => <Stories />} />
               <Route path="/search" render={props => <Search />} />
