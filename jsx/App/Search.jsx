@@ -1,6 +1,7 @@
 import React from 'react';
 import Fuse from 'fuse.js';
 import { SearchSentence } from './Stories/Story/Display/Sentence.jsx';
+import { TranslatableText } from './TranslatableText.jsx'
 import * as Languages from './LanguageConstants.jsx';
 var htmlEscape = require('ent/encode');
 var decode = require('ent/decode');
