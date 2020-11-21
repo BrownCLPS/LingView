@@ -1,4 +1,5 @@
 import React from 'react';
+import { ENGLISH, ESPANOL, FRANCAIS } from './LanguageConstants.jsx';
 
 export function Footer({ setLang }) {
   function handleSelect(event) {
@@ -8,9 +9,9 @@ export function Footer({ setLang }) {
   return (
     <footer id="footer">
       <select id="lang" onChange={(e) => handleSelect(e)}>
-        <option value="en">English</option>
-        <option value="sp">Spanish</option>
-        <option value="fr">French</option>
+        <option value={ENGLISH}>English</option>
+        <option value={ESPANOL}>Spanish</option>
+        <option value={FRANCAIS}>French</option>
       </select>
     </footer>
   );
