@@ -33,7 +33,7 @@ export class StoryIndex extends React.Component {
                 }
                 // React Router link:
                 const link = `<a href='#/story/${index[story]['story ID']}'>${mainTitle}</a>`;
-                
+
                 storyList.push([link, index[story]['author'], timed]);
             }
         }
