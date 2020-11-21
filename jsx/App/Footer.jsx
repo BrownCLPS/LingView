@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { LocaleContext } from "./LocaleContext.jsx"
 import { ENGLISH, ESPANOL, FRANCAIS } from './LanguageConstants.jsx';
 

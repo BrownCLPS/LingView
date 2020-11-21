@@ -20,7 +20,7 @@ const aboutPageText = {
     </div>,
 };
 
-export function AboutPage({ lang }) {
+export function AboutPage() {
   return (
     <div style={{ margin: "0.25in" }}>
       <TranslatableText dictionary={aboutPageText} />

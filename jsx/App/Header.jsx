@@ -65,10 +65,10 @@ export function Header() {
           <Route exact path="/index">
             <StoryIndex />
           </Route>
-          <Route exact path="/story">
+          <Route path="/story">
             <Stories />
           </Route>
-          <Route exact path="/search">
+          <Route path="/search">
             <Search />
           </Route>
           <Route exact path="/about">

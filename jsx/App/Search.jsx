@@ -120,7 +120,7 @@ export class Search extends React.Component {
         console.log("rendering...");
         return (
             <div id="searchForm">
-                <label for="searchInput">{searchPrompt[this.props.lang]}</label> <input id="searchInput" onChange={this.handleInputChange.bind(this)} type="text" />
+                <label for="searchInput"><TranslatableText dictionary={searchPrompt} /></label> <input id="searchInput" onChange={this.handleInputChange.bind(this)} type="text" />
                 <br />
                 {this.genCheckboxes()}
                 <br />
