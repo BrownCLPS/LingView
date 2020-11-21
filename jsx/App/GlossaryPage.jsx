@@ -1,5 +1,6 @@
 import React from 'react';
 import * as Languages from './LanguageConstants.jsx';
+import { TranslatableText } from './TranslatableText.jsx'
 
 const glossaryPageText = {
   [Languages.ENGLISH] :
@@ -19,10 +20,10 @@ const glossaryPageText = {
     </div>,
 };
 
-export function GlossaryPage({ lang }) {
+export function GlossaryPage() {
   return (
       <div style={{margin: "0.25in"}}>
-      {glossaryPageText[lang]}
+        <TranslatableText dictionary={glossaryPageText} />
       </div>
   );
 }
