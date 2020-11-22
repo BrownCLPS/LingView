@@ -2,16 +2,16 @@ import React from 'react';
 import Fuse from 'fuse.js';
 import { SearchSentence } from './Stories/Story/Display/Sentence.jsx';
 import { TranslatableText } from './TranslatableText.jsx'
-import * as Languages from './LanguageConstants.jsx';
+import * as Locales from './LocaleConstants.jsx';
 var htmlEscape = require('ent/encode');
 var decode = require('ent/decode');
 // Note: tier names should be escaped when used as HTML attributes (e.g. data-tier=tier_name),
 // but not when used as page text (e.g. <label>{tier_name}</label>)
 
 const searchPrompt = {
-  [Languages.ENGLISH] : "Search database:",
-  [Languages.ESPANOL] : "Buscar en la base de datos:",
-  [Languages.FRANCAIS] : "Rechercher dans la base de données:",
+  [Locales.ENGLISH] : "Search database:",
+  [Locales.ESPANOL] : "Buscar en la base de datos:",
+  [Locales.FRANCAIS] : "Rechercher dans la base de données:",
 };
 
 export class Search extends React.Component {

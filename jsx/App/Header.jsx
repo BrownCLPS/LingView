@@ -7,42 +7,41 @@ import { GlossaryPage } from './GlossaryPage.jsx';
 import { StoryIndex } from './StoryIndex.jsx';
 import { Search } from './Search.jsx';
 import { Stories } from './Stories/Stories.jsx';
-import * as Languages from './LanguageConstants.jsx';
 import { TranslatableText } from './TranslatableText.jsx'
+import * as Locales from './LocaleConstants.jsx';
 
 const navTitleText = {
-  [Languages.ENGLISH]: "LingView: ELAN and FLEx Web Display",
-  [Languages.ESPANOL]: "LingView: Pantella Web ELAN y FLEx",
-  [Languages.FRANCAIS]: "LingView: Affichage Web ELAN et FLEx",
+  [Locales.ENGLISH]: "LingView: ELAN and FLEx Web Display",
+  [Locales.ESPANOL]: "LingView: Pantella Web ELAN y FLEx",
+  [Locales.FRANCAIS]: "LingView: Affichage Web ELAN et FLEx",
 };
 
 const searchText = {
-  [Languages.ENGLISH]: "Search",
-  [Languages.ESPANOL]: "Buscar",
-  [Languages.FRANCAIS]: "Chercher",
+  [Locales.ENGLISH]: "Search",
+  [Locales.ESPANOL]: "Buscar",
+  [Locales.FRANCAIS]: "Chercher",
 };
 
 const aboutText = {
-  [Languages.ENGLISH]: "About",
-  [Languages.ESPANOL]: "Acerca de",
-  [Languages.FRANCAIS]: "Sur",
+  [Locales.ENGLISH]: "About",
+  [Locales.ESPANOL]: "Acerca de",
+  [Locales.FRANCAIS]: "Sur",
 };
 
 const glossaryText = {
-  [Languages.ENGLISH]: "Glossary",
-  [Languages.ESPANOL]: "Glosario",
-  [Languages.FRANCAIS]: "Glossaire",
+  [Locales.ENGLISH]: "Glossary",
+  [Locales.ESPANOL]: "Glosario",
+  [Locales.FRANCAIS]: "Glossaire",
 };
 
 const indexText = {
-  [Languages.ENGLISH]: "Index of Texts",
-  [Languages.ESPANOL]: "Índice de textos",
-  [Languages.FRANCAIS]: "Index des Textes",
+  [Locales.ENGLISH]: "Index of Texts",
+  [Locales.ESPANOL]: "Índice de textos",
+  [Locales.FRANCAIS]: "Index des Textes",
 };
 
 
 export function Header() {
-  const lang = "en";
   return (
     <Router>
       <div>

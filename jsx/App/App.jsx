@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 // // import id from 'shortid';
-import { LocaleProvider } from './LocaleContext.jsx'
 import { Footer } from './Footer.jsx';
 import { Header } from './Header.jsx';
+import { LocaleProvider } from './LocaleContext.jsx'
 
 
 export function App() {
