@@ -1,6 +1,8 @@
 import id from 'shortid';
+import { storySearchText, storySearchViewStoryText } from './../../../LocaleConstants.jsx';
+import { TranslatableText } from './../../../TranslatableText.jsx'
 var htmlEscape = require("html-es6cape");
-// Note: tier names should be escaped when used as HTML attributes (e.g. data-tier=tier_name), 
+// Note: tier names should be escaped when used as HTML attributes (e.g. data-tier=tier_name),
 // but not when used as page text (e.g. <label>{tier_name}</label>)
 
 function Row({ numSlots, values, tier }) {
@@ -10,7 +12,7 @@ function Row({ numSlots, values, tier }) {
 	// O/P: single row of glossed sentence, with colspan spacing
 
 	// Building a row requires slots to determine the width of certain
-	// table elements. Each element will have a start and end slot, and 
+	// table elements. Each element will have a start and end slot, and
 	// if there is a gap between an end slot and the following start
 	// slot, then a blank table element is input. We use the attribute
 	// 'colSpan' to account for elements which require large slots.
@@ -53,7 +55,7 @@ export function Sentence({ sentence }) {
 	// O/P: table of glossed Row components
 	let rowList = []; // to be output
 	const numSlots = sentence['num_slots'];
-	// Add the indepentent tier, i.e., the top row, to the list of rows. 
+	// Add the indepentent tier, i.e., the top row, to the list of rows.
 	// Note that 'colSpan={numSlots}' ensures that this row spans the entire table.
   if (sentence['noTopRow'] == null || sentence['noTopRow'] === 'false') {
     rowList.push(
@@ -100,5 +102,5 @@ export function SearchSentence({ sentence }) {
 	url += ("story/" + sentence["story ID"] + "?" + sentence.start_time_ms);
 
     // hacky way to introduce a line break (extra <tr> of height 12px)
-	return <div className="searchSentence"><table className="gloss"><thead><tr><td><b> Story</b>: {title}</td></tr><tr style={{"height": "12px"}}></tr></thead><tbody>{rowList}</tbody></table><div class="storyLink"><a href={url}>View Story</a></div></div>;
+	return <div className="searchSentence"><table className="gloss"><thead><tr><td><b> <TranslatableText dictionary={storySearchText} /></b>: {title}</td></tr><tr style={{"height": "12px"}}></tr></thead><tbody>{rowList}</tbody></table><div class="storyLink"><a href={url}><TranslatableText dictionary={storySearchViewStoryText} /></a></div></div>;
 }

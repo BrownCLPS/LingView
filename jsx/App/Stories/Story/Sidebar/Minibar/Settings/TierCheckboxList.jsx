@@ -1,5 +1,8 @@
+import { showOrHideTiersButtonText } from './../../../../../LocaleConstants.jsx';
+import { TranslatableText } from './../../../../../TranslatableText.jsx'
+
 var htmlEscape = require("html-es6cape");
-// Note: tier names should be escaped when used as HTML attributes (e.g. data-tier=tier_name), 
+// Note: tier names should be escaped when used as HTML attributes (e.g. data-tier=tier_name),
 // but not when used as page text (e.g. <label>{tier_name}</label>)
 
 class TierCheckbox extends React.Component {
@@ -43,5 +46,5 @@ export function TierCheckboxList({ tiers }) {
          output.push(<TierCheckbox key={tier_name} tier_name={tier_name} />);
       }
    }
-   return <div id="tierList"><b>Show/hide tiers:</b> <ul>{output}</ul></div>;
+   return <div id="tierList"><b><TranslatableText dictionary={showOrHideTiersButtonText} />:</b> <ul>{output}</ul></div>;
 }

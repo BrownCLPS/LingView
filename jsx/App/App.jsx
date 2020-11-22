@@ -8,7 +8,9 @@ import { LocaleProvider } from './LocaleContext.jsx'
 export function App() {
   return (
     <LocaleProvider>
-        <Header />
+        <div id="wrapper">
+          <Header />
+        </div>
         <Footer />
     </LocaleProvider>
   );

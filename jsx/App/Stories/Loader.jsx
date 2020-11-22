@@ -1,9 +1,11 @@
 import React from 'react';
+import { loadingPageText } from './../LocaleConstants.jsx';
+import { TranslatableText } from './../TranslatableText.jsx'
 
 export function Loader() {
   return (
     <div className="loader">
-        Loading...
+        <TranslatableText dictionary={loadingPageText} />
     </div>
   );
 }

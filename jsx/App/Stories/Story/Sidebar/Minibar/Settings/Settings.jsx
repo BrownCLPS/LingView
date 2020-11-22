@@ -1,5 +1,7 @@
 import { TierCheckboxList } from './TierCheckboxList.jsx';
 import { Video } from './../../Video.jsx';
+import { showVideoButtonText } from './../../../../../LocaleConstants.jsx';
+import { TranslatableText } from './../../../../../TranslatableText.jsx'
 
 class VideoButton extends React.Component {
   // I/P: --
@@ -23,7 +25,7 @@ class VideoButton extends React.Component {
   }
 
   render() {
-    return <div id="videoButton"><input type="checkbox" onClick={this.toggle} defaultChecked /><label>Show video</label></div>;
+    return <div id="videoButton"><input type="checkbox" onClick={this.toggle} defaultChecked /><label><TranslatableText dictionary={showVideoButtonText} /></label></div>;
   }
 }
 
