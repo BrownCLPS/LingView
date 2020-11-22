@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { LocaleContext } from "./LocaleContext.jsx"
-import * as Locales from './LocaleConstants.jsx';
+import * as LocaleConstants from './LocaleConstants.jsx';
 
 /**
  * Footer with component for selecting locale. This updates the LocaleContext value
@@ -13,9 +13,9 @@ export function Footer() {
   return (
     <footer id="footer">
       <select id="lang" onChange={handleSelect} value={locale}>
-        <option value={Locales.ENGLISH}>English</option>
-        <option value={Locales.ESPANOL}>Spanish</option>
-        <option value={Locales.FRANCAIS}>French</option>
+        <option value={LocaleConstants.ENGLISH}>English</option>
+        <option value={LocaleConstants.ESPANOL}>Español</option>
+        <option value={LocaleConstants.FRANCAIS}>Français</option>
       </select>
     </footer>
   );

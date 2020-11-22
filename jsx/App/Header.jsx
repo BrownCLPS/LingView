@@ -8,38 +8,7 @@ import { StoryIndex } from './StoryIndex.jsx';
 import { Search } from './Search.jsx';
 import { Stories } from './Stories/Stories.jsx';
 import { TranslatableText } from './TranslatableText.jsx'
-import * as Locales from './LocaleConstants.jsx';
-
-const navTitleText = {
-  [Locales.ENGLISH]: "LingView: ELAN and FLEx Web Display",
-  [Locales.ESPANOL]: "LingView: Pantella Web ELAN y FLEx",
-  [Locales.FRANCAIS]: "LingView: Affichage Web ELAN et FLEx",
-};
-
-const searchText = {
-  [Locales.ENGLISH]: "Search",
-  [Locales.ESPANOL]: "Buscar",
-  [Locales.FRANCAIS]: "Chercher",
-};
-
-const aboutText = {
-  [Locales.ENGLISH]: "About",
-  [Locales.ESPANOL]: "Acerca de",
-  [Locales.FRANCAIS]: "Sur",
-};
-
-const glossaryText = {
-  [Locales.ENGLISH]: "Glossary",
-  [Locales.ESPANOL]: "Glosario",
-  [Locales.FRANCAIS]: "Glossaire",
-};
-
-const indexText = {
-  [Locales.ENGLISH]: "Index of Texts",
-  [Locales.ESPANOL]: "Índice de textos",
-  [Locales.FRANCAIS]: "Index des Textes",
-};
-
+import { navBarTitleText, navBarSearchText, navBarAboutText, navBarIndexText, navBarGlossaryText } from './LocaleConstants.jsx';
 
 export function Header() {
   return (
@@ -47,14 +16,14 @@ export function Header() {
       <div>
         <div id="navbar">
           <div id="navTitle">
-            <TranslatableText dictionary={navTitleText} />
+            <TranslatableText dictionary={navBarTitleText} />
           </div>
           <ul id="navLinks">
-            <li><a href="#/search/"><TranslatableText dictionary={searchText} /></a></li>
-            <li><a href="#/about/"><TranslatableText dictionary={aboutText} /></a></li>
+            <li><a href="#/search/"><TranslatableText dictionary={navBarSearchText} /></a></li>
+            <li><a href="#/about/"><TranslatableText dictionary={navBarAboutText} /></a></li>
             <li><a href="#/glossary/">
-              <TranslatableText dictionary={glossaryText} /></a></li>
-            <li><a href="#/index/">{<TranslatableText dictionary={indexText} />}</a></li>
+              <TranslatableText dictionary={navBarGlossaryText} /></a></li>
+            <li><a href="#/index/">{<TranslatableText dictionary={navBarIndexText} />}</a></li>
           </ul>
         </div>
         <div>

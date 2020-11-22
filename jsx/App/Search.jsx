@@ -2,17 +2,11 @@ import React from 'react';
 import Fuse from 'fuse.js';
 import { SearchSentence } from './Stories/Story/Display/Sentence.jsx';
 import { TranslatableText } from './TranslatableText.jsx'
-import * as Locales from './LocaleConstants.jsx';
+import { searchPagePromptText } from './LocaleConstants.jsx';
 var htmlEscape = require('ent/encode');
 var decode = require('ent/decode');
 // Note: tier names should be escaped when used as HTML attributes (e.g. data-tier=tier_name),
 // but not when used as page text (e.g. <label>{tier_name}</label>)
-
-const searchPrompt = {
-  [Locales.ENGLISH] : "Search database:",
-  [Locales.ESPANOL] : "Buscar en la base de datos:",
-  [Locales.FRANCAIS] : "Rechercher dans la base de données:",
-};
 
 export class Search extends React.Component {
     constructor(props) {
@@ -121,7 +115,7 @@ export class Search extends React.Component {
         console.log("rendering...");
         return (
             <div id="searchForm">
-                <label for="searchInput"><TranslatableText dictionary={searchPrompt} /></label> <input id="searchInput" onChange={this.handleInputChange.bind(this)} type="text" />
+                <label for="searchInput"><TranslatableText dictionary={searchPagePromptText} /></label> <input id="searchInput" onChange={this.handleInputChange.bind(this)} type="text" />
                 <br />
                 {this.genCheckboxes()}
                 <br />
