@@ -1,6 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
-import { HashRouter as Router } from 'react-router-dom';
+import { HashRouter as Router, Route, Link, NavLink } from 'react-router-dom';
 import { AboutPage } from './AboutPage.jsx';
 import { LandingPage } from './LandingPage.jsx';
 import { GlossaryPage } from './GlossaryPage.jsx';
@@ -13,39 +12,36 @@ import { navBarTitleText, navBarSearchText, navBarAboutText, navBarIndexText, na
 export function Header() {
   return (
     <Router>
-      <div>
-        <div id="navbar">
-          <div id="navTitle">
-            <TranslatableText dictionary={navBarTitleText} />
-          </div>
-          <ul id="navLinks">
-            <li><a href="#/search/"><TranslatableText dictionary={navBarSearchText} /></a></li>
-            <li><a href="#/about/"><TranslatableText dictionary={navBarAboutText} /></a></li>
-            <li><a href="#/glossary/">
-              <TranslatableText dictionary={navBarGlossaryText} /></a></li>
-            <li><a href="#/index/">{<TranslatableText dictionary={navBarIndexText} />}</a></li>
-          </ul>
+      <div id="navbar">
+        <div id="navTitle">
+          <Link to="/"><TranslatableText dictionary={navBarTitleText} /></Link>
         </div>
-        <div>
-          <Route exact path="/">
-            <LandingPage />
-          </Route>
-          <Route exact path="/index">
-            <StoryIndex />
-          </Route>
-          <Route path="/story">
-            <Stories />
-          </Route>
-          <Route path="/search">
-            <Search />
-          </Route>
-          <Route exact path="/about">
-            <AboutPage />
-          </Route>
-          <Route exact path="/glossary">
-            <GlossaryPage />
-          </Route>
+        <div id="navLinks">
+          <NavLink to="/search"><TranslatableText dictionary={navBarSearchText} /></NavLink>
+          <NavLink to="/about"><TranslatableText dictionary={navBarAboutText} /></NavLink>
+          <NavLink to="/glossary"><TranslatableText dictionary={navBarGlossaryText} /></NavLink>
+          <NavLink to="/index"><TranslatableText dictionary={navBarIndexText} /></NavLink>
         </div>
+      </div>
+      <div className="content">
+        <Route exact path="/">
+          <LandingPage />
+        </Route>
+        <Route exact path="/index">
+          <StoryIndex />
+        </Route>
+        <Route path="/story">
+          <Stories />
+        </Route>
+        <Route path="/search">
+          <Search />
+        </Route>
+        <Route exact path="/about">
+          <AboutPage />
+        </Route>
+        <Route exact path="/glossary">
+          <GlossaryPage />
+        </Route>
       </div>
     </Router>
   );
