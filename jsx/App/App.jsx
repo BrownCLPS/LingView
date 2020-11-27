@@ -1,16 +1,17 @@
 import React from 'react';
 
-// // import id from 'shortid';
-import { Footer } from './Footer.jsx';
 import { Header } from './Header.jsx';
 import { LocaleProvider } from './locale/LocaleContext.jsx'
+import { LocaleSelect } from './locale/LocaleSelect.jsx'
 
 
 export function App() {
   return (
     <LocaleProvider>
         <Header />
-        <Footer />
+        <footer>
+          <LocaleSelect />
+        </footer>
     </LocaleProvider>
   );
 }
