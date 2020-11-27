@@ -62,23 +62,26 @@ body {
 }
 
 footer {
-	width: 100%;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	height: 40px;
-	background-color: rgb(150,200,255);
-	color: white;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background-color: rgb(150,200,255);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .localeSelector {
-	height: 2.5rem;
-	background-color: rgb(150,200,255);
-	color: white;
-	border-style: none;
-	float: right;
-	margin: 0 1em;
+    margin: 0 1em;
+    padding: .2em;
+    border-style: none;
+    border-radius: 4px;
+    background-color: #e0efff;
+    color: black;
 }
 
 audio {
