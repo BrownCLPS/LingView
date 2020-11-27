@@ -6,8 +6,8 @@ import { GlossaryPage } from './GlossaryPage.jsx';
 import { StoryIndex } from './StoryIndex.jsx';
 import { Search } from './Search.jsx';
 import { Stories } from './Stories/Stories.jsx';
-import { TranslatableText } from './TranslatableText.jsx'
-import { navBarTitleText, navBarSearchText, navBarAboutText, navBarIndexText, navBarGlossaryText } from './LocaleConstants.jsx';
+import { TranslatableText } from './locale/TranslatableText.jsx'
+import { navBarTitleText, navBarSearchText, navBarAboutText, navBarIndexText, navBarGlossaryText } from './locale/LocaleConstants.jsx';
 
 export function Header() {
   return (

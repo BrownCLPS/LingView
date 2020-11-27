@@ -3,7 +3,7 @@ import React from 'react';
 // // import id from 'shortid';
 import { Footer } from './Footer.jsx';
 import { Header } from './Header.jsx';
-import { LocaleProvider } from './LocaleContext.jsx'
+import { LocaleProvider } from './locale/LocaleContext.jsx'
 
 
 export function App() {

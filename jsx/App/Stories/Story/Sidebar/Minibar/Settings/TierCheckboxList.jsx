@@ -1,5 +1,5 @@
-import { showOrHideTiersButtonText } from './../../../../../LocaleConstants.jsx';
-import { TranslatableText } from './../../../../../TranslatableText.jsx'
+import { showOrHideTiersButtonText } from '../../../../../locale/LocaleConstants.jsx';
+import { TranslatableText } from '../../../../../locale/TranslatableText.jsx'
 
 var htmlEscape = require("html-es6cape");
 // Note: tier names should be escaped when used as HTML attributes (e.g. data-tier=tier_name),

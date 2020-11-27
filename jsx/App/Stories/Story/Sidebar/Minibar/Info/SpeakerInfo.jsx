@@ -1,6 +1,6 @@
 import id from 'shortid';
-import { metadataSpeakersText } from './../../../../../LocaleConstants.jsx';
-import { TranslatableText } from './../../../../../TranslatableText.jsx'
+import { metadataSpeakersText } from '../../../../../locale/LocaleConstants.jsx';
+import { TranslatableText } from '../../../../../locale/TranslatableText.jsx'
 
 export function SpeakerInfo({ speakers }) {
 	// I/P: speakers, a map from speaker IDs to objects containing speaker names, languages, etc.

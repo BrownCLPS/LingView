@@ -7,7 +7,6 @@ import { LocaleContext } from "./LocaleContext.jsx"
 export const TranslatableText = ({ dictionary }) => {
   const { locale } = useContext(LocaleContext);
   if (!dictionary[locale]) {
-    // Render warning or throw error instead?
     console.error(`[TranslatableText] No translation for ${locale} in provided dictionary`);
   }
   return dictionary[locale];

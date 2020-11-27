@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { LocaleContext } from "./LocaleContext.jsx"
-import * as LocaleConstants from './LocaleConstants.jsx';
+import { LocaleContext } from "./locale/LocaleContext.jsx"
+import * as LocaleConstants from './locale/LocaleConstants.jsx';
 
 /**
  * Footer with component for selecting locale. This updates the LocaleContext value

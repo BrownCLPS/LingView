@@ -1,8 +1,8 @@
 import React from 'react';
 import Fuse from 'fuse.js';
 import { SearchSentence } from './Stories/Story/Display/Sentence.jsx';
-import { TranslatableText } from './TranslatableText.jsx'
-import { searchPagePromptText } from './LocaleConstants.jsx';
+import { TranslatableText } from './locale/TranslatableText.jsx'
+import { searchPagePromptText } from './locale/LocaleConstants.jsx';
 var htmlEscape = require('ent/encode');
 var decode = require('ent/decode');
 // Note: tier names should be escaped when used as HTML attributes (e.g. data-tier=tier_name),

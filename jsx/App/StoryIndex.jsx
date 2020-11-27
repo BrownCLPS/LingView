@@ -2,8 +2,8 @@ import React from 'react';
 // import id from 'shortid';
 // import { Link } from 'react-router-dom';
 // import ReactDOMServer from 'react-dom/server';
-import { TranslatableText } from './TranslatableText.jsx';
-import { indexPageTitleHeaderText, indexPageAuthorHeaderText, indexPageMediaHeaderText } from './LocaleConstants.jsx';
+import { TranslatableText } from './locale/TranslatableText.jsx';
+import { indexPageTitleHeaderText, indexPageAuthorHeaderText, indexPageMediaHeaderText } from './locale/LocaleConstants.jsx';
 
 require('datatables.net-dt');
 import 'datatables.net-dt/css/jquery.dataTables.css';
