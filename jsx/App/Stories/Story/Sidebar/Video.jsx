@@ -10,7 +10,6 @@ export class Video extends React.Component {
 		// Resize panels:
 		var extraHeight = 88; // NavBar plus footer.
 		var bodyHeight = 'calc(100% - ' + extraHeight.toString() + "px)";
-		console.log("Body height: " + bodyHeight);
 
 		$('#leftPanel').css('width', '40%');
 		$('#leftPanel').css('height', bodyHeight);
@@ -46,7 +45,6 @@ export class Video extends React.Component {
 		// Resize panels:
 		var extraHeight = 128; // NavBar plus footer plus audio.
 		var bodyHeight = 'calc(100% - ' + extraHeight.toString() + "px)";
-		console.log("Body height: " + bodyHeight);
 
 		$("#leftPanel").css("width", "300px");
 		$("#leftPanel").css("height", bodyHeight);
