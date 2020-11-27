@@ -8,10 +8,14 @@ export class Video extends React.Component {
 
 	static show() {
 		// Resize panels:
+		var extraHeight = 88; // NavBar plus footer.
+		var bodyHeight = 'calc(100% - ' + extraHeight.toString() + "px)";
+		console.log("Body height: " + bodyHeight);
+
 		$('#leftPanel').css('width', '40%');
-		$('#leftPanel').css('height', 'calc(100% - 48px)');
+		$('#leftPanel').css('height', bodyHeight);
 		$('#centerPanel').css('margin-left', '40%');
-		$('#centerPanel').css('height', 'calc(100% - 48px)');
+		$('#centerPanel').css('height', bodyHeight);
 		$("#centerPanel").css("width", "60%");
 
 		// Deactivate audio:
@@ -40,12 +44,13 @@ export class Video extends React.Component {
 
 	static hide() {
 		// Resize panels:
-		var footheight = ($("#footer").height() + 48).toString() + "px";
-		var bodyheight = "calc(100% - " + footheight + ")";
+		var extraHeight = 128; // NavBar plus footer plus audio.
+		var bodyHeight = 'calc(100% - ' + extraHeight.toString() + "px)";
+		console.log("Body height: " + bodyHeight);
 
 		$("#leftPanel").css("width", "300px");
-		$("#leftPanel").css("height", bodyheight);
-		$("#centerPanel").css("height", bodyheight);
+		$("#leftPanel").css("height", bodyHeight);
+		$("#centerPanel").css("height", bodyHeight);
 		$("#centerPanel").css("margin-left", "300px");
 		$("#centerPanel").css("width", "calc(100% - 300px)");
 
