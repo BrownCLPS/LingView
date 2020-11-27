@@ -44,6 +44,14 @@ body {
 	text-decoration: underline;
 }
 
+/* margin for all pages */
+.content {
+	margin-top: 20px;
+	margin-left: 40px;
+	margin-right: 40px;
+	margin-bottom: 50px; /* space for footer plus extra whitespace */
+}
+
 #leftPanel {
 	width: 300px;
 	position: fixed;
@@ -55,11 +63,11 @@ body {
 
 footer {
 	width: 100%;
-	position:fixed;
-	bottom:0;
-	left:0;
-	right:0;
-	height:40px;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 40px;
 	background-color: rgb(150,200,255);
 	color: white;
 }
@@ -70,13 +78,13 @@ footer {
 	color: white;
 	border-style: none;
 	float: right;
-  margin: 0 1em;
+	margin: 0 1em;
 }
 
 audio {
 	width: 100%;
-	position:fixed;
-	bottom:40px; /* Directly above the footer bar. */
+	position: fixed;
+	bottom: 40px; /* Directly above the footer bar. */
 	display: block;
 }
 
@@ -302,16 +310,12 @@ video {
 	display: none;
 }
 
-#index {
-	margin: 20px;
-}
-
 #indexTable {
 	text-align: center;
 }
 
 #navLinks {
-	display: flex;
+    display: flex;
     flex-wrap: nowrap;
     justify-content: flex-end;
     align-items: center;
@@ -336,9 +340,4 @@ video {
 	justify-content: center;
 	align-items: center;
 	height: 10em;
-}
-
-#searchForm {
-	margin: 20px;
-	margin-bottom: 50px; /* Leave some space for footer. */
 }
