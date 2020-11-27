@@ -109,6 +109,25 @@ export const searchPagePromptText = {
   [FRANCAIS] : "Rechercher dans la base de données:",
 };
 
+// Story index columns text.
+export const indexPageTitleHeaderText = {
+  [ENGLISH] : "Title",
+  [ESPANOL] : "Titre",
+  [FRANCAIS] : "Título",
+};
+
+export const indexPageAuthorHeaderText = {
+  [ENGLISH] : "Author",
+  [ESPANOL] : "Auteur",
+  [FRANCAIS] : "Autor",
+};
+
+export const indexPageMediaHeaderText = {
+  [ENGLISH] : "Media",
+  [ESPANOL] : "Médias",
+  [FRANCAIS] : "Medios",
+};
+
 // Use if a story isn't found.
 export const notFoundPageText = {
   [ENGLISH] : "Story not found. Perhaps you mistyped the URL?",

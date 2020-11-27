@@ -2,11 +2,14 @@ import React from 'react';
 // import id from 'shortid';
 // import { Link } from 'react-router-dom';
 // import ReactDOMServer from 'react-dom/server';
+import { TranslatableText } from './TranslatableText.jsx';
+import { indexPageTitleHeaderText, indexPageAuthorHeaderText, indexPageMediaHeaderText } from './LocaleConstants.jsx';
 
 require('datatables.net-dt');
 import 'datatables.net-dt/css/jquery.dataTables.css';
 
 export class StoryIndex extends React.Component {
+
     async componentDidMount() {
         const index = (await import('~./data/index.json')).default;
         let storyList = [];
@@ -41,11 +44,7 @@ export class StoryIndex extends React.Component {
         $(document).ready(function() {
             $('#indexTable').DataTable( {
                 data: storyList,
-                columns: [
-                    { title: "Title" },
-                    { title: "Author" },
-                    { title: "Media" }
-                ],
+                columns: [ {}, {}, {} ],
                 scrollY: '75vh',
                 scrollCollapse: true,
                 paging: false
@@ -57,7 +56,15 @@ export class StoryIndex extends React.Component {
     render() {
         return (
             <div id="index">
-                <table id="indexTable"></table>
+                <table id="indexTable">
+                  <thead>
+                    <tr>
+                        <th><TranslatableText dictionary={indexPageTitleHeaderText} /></th>
+                        <th><TranslatableText dictionary={indexPageAuthorHeaderText} /></th>
+                        <th><TranslatableText dictionary={indexPageMediaHeaderText} /></th>
+                    </tr>
+                  </thead>
+                </table>
             </div>
         );
     }
