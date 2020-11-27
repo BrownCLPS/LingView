@@ -178,7 +178,7 @@ span.timeStamp {
 #untimedTextDisplay {
 	position: fixed;
 	width: calc(100% - 300px);
-	height: calc(100% - 48px);
+	height: calc(100% - 88px); /* Minus the navBar and the footer. */
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
