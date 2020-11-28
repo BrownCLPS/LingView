@@ -1,7 +1,7 @@
 import { Title } from './Title.jsx';
 import { Video } from './Video.jsx';
 import { Minibar } from './Minibar/Minibar.jsx'
-import { getMediaFilePath } from '~./jsx/App/Stories/Story/Story.jsx';
+import { getMediaFilePath } from '../Story.jsx';
 
 export function Sidebar({ metadata }) {
 	// I/P: metadata, in JSON format
