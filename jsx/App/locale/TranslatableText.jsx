@@ -1,4 +1,5 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
+import { DEFAULT_LOCALE } from './LocaleConstants.jsx';
 import { LocaleContext } from "./LocaleContext.jsx"
 
 /**
@@ -6,13 +7,9 @@ import { LocaleContext } from "./LocaleContext.jsx"
  */
 export const TranslatableText = ({ dictionary }) => {
   const { locale } = useContext(LocaleContext);
-  if (!dictionary[locale]) {
-    let defaultLocale = Object.keys(dictionary)[0];
-    if (!dictionary[defaultLocale]) {
-      console.error(`[TranslatableText] Dictionary object is empty.`)
-    }
-    console.log(`[TranslatableText] No translation for ${locale} in provided dictionary. Using ${defaultLocale}.`);
-    return dictionary[defaultLocale];
+  if (dictionary[locale] === undefined) {
+    console.error(`[TranslatableText] No translation for ${locale} in provided dictionary`);
+    return dictionary[DEFAULT_LOCALE];
   }
   return dictionary[locale];
 }

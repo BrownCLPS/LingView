@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { DEFAULT_LOCALE, LOCAL_STORAGE_LOCALE_KEY } from './LocaleConstants.jsx';
+import { DEFAULT_LOCALE } from './LocaleConstants.jsx';
+
+const LOCAL_STORAGE_KEY = "lingview-locale";
 
 const LocaleContext = React.createContext();
 
@@ -9,14 +11,14 @@ const LocaleProvider = ({ children }) => {
    * This allows language selection to persist when page reloads.
    */
   let [locale, setLocaleState] = useState(() => {
-    return window.localStorage.getItem(LOCAL_STORAGE_LOCALE_KEY) || DEFAULT_LOCALE
+    return window.localStorage.getItem(LOCAL_STORAGE_KEY) || DEFAULT_LOCALE
   });
 
   const provider = {
     locale,
     setLocale: selected => {
       setLocaleState(selected);
-      window.localStorage.setItem(LOCAL_STORAGE_LOCALE_KEY, selected);
+      window.localStorage.setItem(LOCAL_STORAGE_KEY, selected);
     }
   };
   return (
