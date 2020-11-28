@@ -87,6 +87,7 @@ footer {
 audio {
 	width: 100%;
 	position: fixed;
+	left: 0; /* Spans the entire page. */
 	bottom: 40px; /* Directly above the footer bar. */
 	display: block;
 }
