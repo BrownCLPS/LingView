@@ -6,8 +6,6 @@ export const FRANCAIS = "fr";
 // Put default language here.
 export const DEFAULT_LOCALE = ENGLISH;
 
-export const LOCAL_STORAGE_LOCALE_KEY = "lingview-locale";
-
 // Below, write the text or JSX that goes in various parts of the website for
 // each language.
 
