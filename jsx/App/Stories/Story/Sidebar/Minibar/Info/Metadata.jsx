@@ -1,5 +1,5 @@
-import { metadataDescriptionText, metadataAuthorText, metadataGenreText, metadataDateText, metadataGlosserText, metadataSourceText } from '../../../../../locale/LocaleConstants.jsx';
-import { TranslatableText } from '../../../../../locale/TranslatableText.jsx'
+import { metadataDescriptionText, metadataAuthorText, metadataGenreText, metadataDateText, metadataGlosserText, metadataSourceText } from '~./jsx/App/locale/LocaleConstants.jsx';
+import { TranslatableText } from '~./jsx/App/locale/TranslatableText.jsx'
 
 export function Metadata({ metadata }) {
 	// I/P: metadata, in JSON format

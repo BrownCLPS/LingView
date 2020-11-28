@@ -7,7 +7,12 @@ import { LocaleContext } from "./LocaleContext.jsx"
 export const TranslatableText = ({ dictionary }) => {
   const { locale } = useContext(LocaleContext);
   if (!dictionary[locale]) {
-    console.error(`[TranslatableText] No translation for ${locale} in provided dictionary`);
+    let defaultLocale = Object.keys(dictionary)[0];
+    if (!dictionary[defaultLocale]) {
+      console.error(`[TranslatableText] Dictionary object is empty.`)
+    }
+    console.log(`[TranslatableText] No translation for ${locale} in provided dictionary. Using ${defaultLocale}.`);
+    return dictionary[defaultLocale];
   }
   return dictionary[locale];
 }

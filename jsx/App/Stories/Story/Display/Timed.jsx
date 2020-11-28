@@ -94,10 +94,10 @@ export function TimedTextDisplay({ sentences }) {
 	for (const timestamp of uniqueTimestamps) {
 		const correspondingSentences = timesToSentences[timestamp];
 		output.push(
-			<LabeledTimeBlock 
-				key={id.generate()} 
-				sentences={correspondingSentences} 
-				timestamp={timestamp} 
+			<LabeledTimeBlock
+				key={id.generate()}
+				sentences={correspondingSentences}
+				timestamp={timestamp}
 			/>
 		);
 	}

@@ -1,6 +1,6 @@
 import React from 'react';
-import { notFoundPageText } from '../locale/LocaleConstants.jsx';
-import { TranslatableText } from '../locale/TranslatableText.jsx'
+import { notFoundPageText } from '~./jsx/App/locale/LocaleConstants.jsx';
+import { TranslatableText } from '~./jsx/App/locale/TranslatableText.jsx';
 
 export function NotFound() {
   return (

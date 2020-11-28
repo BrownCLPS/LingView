@@ -2,7 +2,7 @@ import { Sidebar } from './Sidebar/Sidebar.jsx';
 import { CenterPanel } from './Display/CenterPanel.jsx';
 import { Video } from './Sidebar/Video.jsx';
 import { setupTextSync } from './lib/txt_sync';
-import { Loader } from '../Loader.jsx';
+import { Loader } from '~./jsx/App/Stories/Loader.jsx';
 
 export class Story extends React.Component {
     constructor(props) {

@@ -1,7 +1,7 @@
 import { TierCheckboxList } from './TierCheckboxList.jsx';
-import { Video } from './../../Video.jsx';
-import { showVideoButtonText } from '../../../../../locale/LocaleConstants.jsx';
-import { TranslatableText } from '../../../../../locale/TranslatableText.jsx'
+import { Video } from '~./jsx/App/Stories/Story/Sidebar/Video.jsx';
+import { showVideoButtonText } from '~./jsx/App/locale/LocaleConstants.jsx';
+import { TranslatableText } from '~./jsx/App/locale/TranslatableText.jsx'
 
 class VideoButton extends React.Component {
   // I/P: --

@@ -17,16 +17,16 @@ export function UntimedTextDisplay({ sentences }) {
 	// O/P: the main gloss view, with several Sentences arranged vertically, each wrapped in an UntimedBlock
 	// Status: tested, working
 	let output = [];
-	let sentenceCount = 1; 
+	let sentenceCount = 1;
 	for (const sentence of sentences) {
 		output.push(
-			<UntimedBlock 
-				key={id.generate()} 
-				sentence={sentence} 
-				sentenceId={sentenceCount} 
+			<UntimedBlock
+				key={id.generate()}
+				sentence={sentence}
+				sentenceId={sentenceCount}
 			/>
 		);
-		sentenceCount += 1; 
+		sentenceCount += 1;
 	}
 	return <div id="untimedTextDisplay">{output}</div>;
 }

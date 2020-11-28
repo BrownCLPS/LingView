@@ -1,6 +1,6 @@
 import id from 'shortid';
-import { storySearchText, storySearchViewStoryText } from '../../../locale/LocaleConstants.jsx';
-import { TranslatableText } from '../../../locale/TranslatableText.jsx'
+import { storySearchText, storySearchViewStoryText } from '~./jsx/App/locale/LocaleConstants.jsx';
+import { TranslatableText } from '~./jsx/App/locale/TranslatableText.jsx';
 var htmlEscape = require("html-es6cape");
 // Note: tier names should be escaped when used as HTML attributes (e.g. data-tier=tier_name),
 // but not when used as page text (e.g. <label>{tier_name}</label>)
