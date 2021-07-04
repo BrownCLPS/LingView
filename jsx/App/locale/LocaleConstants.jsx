@@ -135,7 +135,7 @@ export const metadataSourceText = {
 export const metadataSpeakersText = {
   [ENGLISH] : "Speakers",
   [ESPANOL] : "Oradores",
-  [FRANCAIS] : "Orateur",
+  [FRANCAIS] : "Orateurs",
 };
 
 export const storySearchText = {
