@@ -3,9 +3,8 @@
     "timed": false,
     "story ID": "9508d2e2-751d-444d-9c50-6502984522fd",
     "title": {
-      "en": "10. Owl-Mammoth -- QUESTION 5.9, 5.13, 6.5, 6.7[gender]",
-      "tun": "Tuwatasiwat’ɛ",
-      "_default": "Tuwa"
+      "en": "10. Owl-Mammoth",
+      "_default": "10. Owl-Mammoth"
     },
     "media": {
       "audio": "",
@@ -18,6 +17,51 @@
     "date_created": "",
     "date_uploaded": "7/3/2021",
     "source": {
+      "_default": " "
+    },
+    "description": "The Owl-Mammoth",
+    "genre": "",
+    "author": "Sesostrie Youchigant",
+    "glosser": "",
+    "speakers": [],
+    "xml_file_name": "Tuwa.xml",
+    "source_filetype": "FLEx",
+    "tier IDs": {
+      "Tunica words": {
+        "subdivided": true
+      },
+      "Tunica morpheme (as in the text)": {
+        "subdivided": true
+      },
+      "Tunica morpheme (citation form)": {
+        "subdivided": true
+      },
+      "English morpheme gloss": {
+        "subdivided": true
+      },
+      "English free": {
+        "subdivided": false
+      }
+    }
+  },
+  "4b138050-67a0-42f1-942a-af1106034845": {
+    "timed": false,
+    "story ID": "4b138050-67a0-42f1-942a-af1106034845",
+    "title": {
+      "en": "03A. Solar Myth - First Telling",
+      "_default": "03A. Solar Myth - First telling"
+    },
+    "media": {
+      "audio": "",
+      "video": ""
+    },
+    "languages": [
+      "en",
+      "tun"
+    ],
+    "date_created": "",
+    "date_uploaded": "1/28/2022",
+    "source": {
       "_default": ""
     },
     "description": "",
@@ -25,7 +69,143 @@
     "author": "",
     "glosser": "",
     "speakers": [],
-    "xml_file_name": "Tuwa.xml",
+    "xml_file_name": "solar1.xml",
+    "source_filetype": "FLEx",
+    "tier IDs": {
+      "Tunica words": {
+        "subdivided": true
+      },
+      "Tunica morpheme (as in the text)": {
+        "subdivided": true
+      },
+      "Tunica morpheme (citation form)": {
+        "subdivided": true
+      },
+      "English morpheme gloss": {
+        "subdivided": true
+      },
+      "English free": {
+        "subdivided": false
+      }
+    }
+  },
+  "99d1253c-bee8-42a9-8f59-3a689f7e6b63": {
+    "timed": false,
+    "story ID": "99d1253c-bee8-42a9-8f59-3a689f7e6b63",
+    "title": {
+      "en": "03B. Solar Myth - Second telling",
+      "_default": "03B. Solar Myth - Second telling"
+    },
+    "media": {
+      "audio": "",
+      "video": ""
+    },
+    "languages": [
+      "en",
+      "tun"
+    ],
+    "date_created": "",
+    "date_uploaded": "1/28/2022",
+    "source": {
+      "_default": ""
+    },
+    "description": "",
+    "genre": "",
+    "author": "",
+    "glosser": "",
+    "speakers": [],
+    "xml_file_name": "solarb.flextext",
+    "source_filetype": "FLEx",
+    "tier IDs": {
+      "Tunica words": {
+        "subdivided": true
+      },
+      "Tunica morpheme (as in the text)": {
+        "subdivided": true
+      },
+      "Tunica morpheme (citation form)": {
+        "subdivided": true
+      },
+      "English morpheme gloss": {
+        "subdivided": true
+      },
+      "English free": {
+        "subdivided": false
+      }
+    }
+  },
+  "526aab97-dae5-47f1-9481-214646410f54": {
+    "timed": false,
+    "story ID": "526aab97-dae5-47f1-9481-214646410f54",
+    "title": {
+      "en": "42g. The Night Owl  -- COMPLETE",
+      "tun": "42g. Chushi",
+      "_default": "42g. The Night Owl"
+    },
+    "media": {
+      "audio": "",
+      "video": ""
+    },
+    "languages": [
+      "en",
+      "tun"
+    ],
+    "date_created": "",
+    "date_uploaded": "1/28/2022",
+    "source": {
+      "_default": ""
+    },
+    "description": "",
+    "genre": "",
+    "author": "",
+    "glosser": "",
+    "speakers": [],
+    "xml_file_name": "chushi.xml",
+    "source_filetype": "FLEx",
+    "tier IDs": {
+      "Tunica words": {
+        "subdivided": true
+      },
+      "Tunica morpheme (as in the text)": {
+        "subdivided": true
+      },
+      "Tunica morpheme (citation form)": {
+        "subdivided": true
+      },
+      "English morpheme gloss": {
+        "subdivided": true
+      },
+      "English free": {
+        "subdivided": false
+      }
+    }
+  },
+  "88858500-3b99-4ada-a7d8-892e84fa3983": {
+    "timed": false,
+    "story ID": "88858500-3b99-4ada-a7d8-892e84fa3983",
+    "title": {
+      "en": "03C. Solar myth - Third telling",
+      "_default": "03C. Solar myth - Third telling"
+    },
+    "media": {
+      "audio": "",
+      "video": ""
+    },
+    "languages": [
+      "en",
+      "tun"
+    ],
+    "date_created": "",
+    "date_uploaded": "1/28/2022",
+    "source": {
+      "_default": ""
+    },
+    "description": "",
+    "genre": "",
+    "author": "",
+    "glosser": "",
+    "speakers": [],
+    "xml_file_name": "solarc.flextext",
     "source_filetype": "FLEx",
     "tier IDs": {
       "Tunica words": {
