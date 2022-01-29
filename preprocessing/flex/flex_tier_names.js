@@ -8,7 +8,7 @@ const isoDict = require('./iso_dict.json');
 // Must return a different string for each tier type in the corpus
 // so that tier names can be guaranteed to be unique.
 function decodeType(type) {
-  /*
+  
   // English UI text:
     switch(type) {
         case "txt": return "morpheme (as in the text)";
@@ -19,8 +19,8 @@ function decodeType(type) {
         case "hn": return "homophone number"; // indicates which of multiple look-alike morphemes it is
     default: return type;
     }
-  */
-
+  
+/*
   // Spanish UI text:
   switch (type) {
     case "txt":
@@ -42,6 +42,7 @@ function decodeType(type) {
     default:
       return type;
   }
+*/
 }
 
 // Must return a different string for each language in the corpus
@@ -56,12 +57,15 @@ function decodeLang(lang) {
       return "a'ingae (ortografía Borman)";
     case "con-Latn-EC-x-dureno":
       return "a'ingae (ortografía nueva)";
+    case "tun":
+      return "Tunica";
     case "defaultLang":
       return "defaultLang";
 
     // for Spanish UI text:
     case "en":
-      return "inglés";
+//      return "inglés";
+      return "English";
 
     default: // fall through
   }
@@ -93,10 +97,10 @@ function decodeLang(lang) {
 // results via checkboxes) will work incorrectly. 
 function getTierName(lang, type) {
   // English UI text:
-  // return decodeLang(lang) + " " + decodeType(type);
+   return decodeLang(lang) + " " + decodeType(type);
 
   // Spanish UI text:
-  return decodeType(type) + " en " + decodeLang(lang);
+//  return decodeType(type) + " en " + decodeLang(lang);
 }
 
 module.exports = {

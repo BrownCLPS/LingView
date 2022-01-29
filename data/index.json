@@ -6,7 +6,7 @@
       "con-Latn-EC": "103 Singo a'i",
       "en": "Black People",
       "es": "El negro",
-      "_default": "Singo a'i"
+      "_default": "103"
     },
     "media": {
       "audio": "",
@@ -18,7 +18,7 @@
       "es"
     ],
     "date_created": "",
-    "date_uploaded": "2/3/2018",
+    "date_uploaded": "7/3/2021",
     "source": {
       "con-Latn-EC": "Blaser, Magdalena \"Mitos del pueblo Cofán\"",
       "en": "Blaser, Magdalena \"Myths of the Cofán people\"",
@@ -32,25 +32,71 @@
     "xml_file_name": "103.xml",
     "source_filetype": "FLEx",
     "tier IDs": {
-      "palabra en a'ingae (ortografía Borman)": {
+      "a'ingae (ortografía Borman) words": {
         "subdivided": true
       },
-      "morfema (como en el texto) en a'ingae (ortografía Borman)": {
+      "a'ingae (ortografía Borman) morpheme (as in the text)": {
         "subdivided": true
       },
-      "morfema (forma típica) en a'ingae (ortografía Borman)": {
+      "a'ingae (ortografía Borman) morpheme (citation form)": {
         "subdivided": true
       },
-      "glosa de morfema en inglés": {
+      "English morpheme gloss": {
         "subdivided": true
       },
-      "frase en inglés": {
+      "English free": {
         "subdivided": false
       },
-      "frase en Español": {
+      "Español free": {
         "subdivided": false
       },
-      "frase en a'ingae (ortografía Borman)": {
+      "a'ingae (ortografía Borman) free": {
+        "subdivided": false
+      }
+    }
+  },
+  "9508d2e2-751d-444d-9c50-6502984522fd": {
+    "timed": false,
+    "story ID": "9508d2e2-751d-444d-9c50-6502984522fd",
+    "title": {
+      "en": "10. Owl-Mammoth -- QUESTION 5.9, 5.13, 6.5, 6.7[gender]",
+      "tun": "Tuwatasiwat’ɛ",
+      "_default": "Tuwa"
+    },
+    "media": {
+      "audio": "",
+      "video": ""
+    },
+    "languages": [
+      "en",
+      "tun"
+    ],
+    "date_created": "",
+    "date_uploaded": "7/3/2021",
+    "source": {
+      "_default": ""
+    },
+    "description": "",
+    "genre": "",
+    "author": "",
+    "glosser": "",
+    "speakers": [],
+    "xml_file_name": "Tuwa.xml",
+    "source_filetype": "FLEx",
+    "tier IDs": {
+      "Tunica words": {
+        "subdivided": true
+      },
+      "Tunica morpheme (as in the text)": {
+        "subdivided": true
+      },
+      "Tunica morpheme (citation form)": {
+        "subdivided": true
+      },
+      "English morpheme gloss": {
+        "subdivided": true
+      },
+      "English free": {
         "subdivided": false
       }
     }
@@ -59,7 +105,7 @@
     "timed": true,
     "story ID": "1ed3d641-acd9-4466-811d-17c8ed59844c",
     "title": {
-      "_default": "Kuke chiste"
+      "_default": "20170804_kuke_chiste_FACQ"
     },
     "media": {
       "audio": "20170804_kuke_chiste_FACQ.mp3",
@@ -67,11 +113,11 @@
     },
     "languages": [],
     "date_created": "",
-    "date_uploaded": "8/30/2018",
+    "date_uploaded": "7/3/2021",
     "source": {
       "_default": ""
     },
-    "description": "A joke about a hare\n",
+    "description": "",
     "genre": "",
     "author": "",
     "glosser": "",
