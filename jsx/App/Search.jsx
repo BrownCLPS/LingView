@@ -91,10 +91,10 @@ export class Search extends React.Component {
         let tiers = this.state.searchIndex['tier IDs'];
         tiers.forEach((tier) => {
             checkboxes.push(
-                <input id={htmlEscape(tier)} name="fields" type="checkbox" onChange={this.search.bind(this)}
-                defaultChecked />
+                <label><input id={htmlEscape(tier)} name="fields" type="checkbox" onChange={this.search.bind(this)}
+                defaultChecked />{tier}</label>
             );
-            checkboxes.push(<label>{tier}</label>);
+//            checkboxes.push(<label>{tier}</label>);
             checkboxes.push(<span>&nbsp;&nbsp;</span>);
         })
         return checkboxes
