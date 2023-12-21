@@ -9,7 +9,7 @@ const aboutPageJSX = {
         The students thank Mary Onwá:ri Tekahawáhkwen McDonald and Wíshe Mitchell Mittelstaedt, for generously contributing Kanien'kéha expertise in the course of this project and throughout LING 415/610; and Professor Jessica Coon, for leading this class and supporting this LingView pilot project.
         The stories available on this website are shared with the consent of the speakers. Any errors or misrepresentations are the students' responsibility. </p>
     <h2>About Kanien'kéha</h2>
-        <p>Kanien'kéha, also known by the exonym "Mohawk," is a Northern Iroquoian language spoken in what is today Ontario, Quebec, and New York State. As of 2021, there are approximately 560 L1 speakers and 80 advanced L2 speakers (DeCaire 2023), with many more intermediate speakers.
+        <p>Kanien'kéha, also known by the exonym "Mohawk," is a Northern Iroquoian language spoken in what is now called Ontario, Quebec, and New York State. As of 2021, there are approximately 560 L1 speakers and 80 advanced L2 speakers (DeCaire 2023), with many more intermediate speakers.
         Kanien'kéha grammar is known for its large inventory of pronominal prefixes, its polysynthetic morphology, and its frequent usage of noun incorporation.
         </p>
         <p>The Kanien'kehá:ka—the speakers of Kanien'kéha—are leading language revitalization programs including adult immersion, to reestablish generational transmission of the language. This website is intended as a prototype for language resources, to be customized according to community interests and needs.</p>
